@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senin Ashraf | Achievements</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #f5f1e7; /* Cream background */
+            --secondary: #8b5a2b; /* Brown accent */
+            --accent: #a67c52; /* Lighter brown */
+            --light: #4a3f35; /* Dark brown for text */
+            --dark: #e8d9c5; /* Light cream for cards */
+            --darker: #d9c7b1; /* Slightly darker cream */
+            --text-primary: #2a2118; /* Black for main text */
+            --text-secondary: #5a4a3a; /* Dark brown for secondary text */
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Calibre', 'Inter', 'San Francisco', 'SF Pro Text', -apple-system, system-ui, sans-serif;
+        }
+        
+        body {
+            background-color: var(--primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* Achievements Page Specific Styles */
+        .achievements-page {
+            padding: 6rem 10% 4rem;
+            min-height: 100vh;
+        }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            color: var(--secondary);
+            background: transparent;
+            border: 1px solid var(--secondary);
+            border-radius: 4px;
+            padding: 0.8rem 1.5rem;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+        }
+        
+        .back-button:hover {
+            background: rgba(139, 90, 43, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .back-button i {
+            margin-right: 0.5rem;
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-right: 1.5rem;
+            white-space: nowrap;
+        }
+        
+        .section-title .line {
+            height: 1px;
+            background-color: var(--text-secondary);
+            width: 300px;
+            opacity: 0.3;
+        }
+        
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .achievement-card {
+            background-color: var(--dark);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(139, 90, 43, 0.1);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        
+        .achievement-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px -5px rgba(74, 63, 53, 0.15);
+        }
+        
+        .certificate-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 0 auto 1.5rem;
+            border: 2px solid var(--secondary);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .certificate-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .certificate-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .achievement-title {
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .achievement-description {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .achievement-date {
+            color: var(--secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        footer {
+            padding: 2rem 10%;
+            text-align: center;
+            background-color: var(--darker);
+            margin-top: 4rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .social-links a {
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-note {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .achievements-page {
+                padding: 5rem 2rem 2rem;
+            }
+            
+            .section-title {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .section-title .line {
+                width: 100px;
+                margin-top: 1rem;
+            }
+            
+            .achievements-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .achievement-card {
+                padding: 1.5rem;
+            }
+            
+            .certificate-image {
+                width: 180px;
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="achievements-page">
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+        
+        <div class="section-title">
+            <h2>My Achievements</h2>
+            <div class="line"></div>
+        </div>
+        
+        <div class="achievements-grid">
+            <!-- Achievement 1 -->
+            <div class="achievement-card">
+                <div class="certificate-image">
+                    <img src="images/certificate-sample.jpg" alt="Machine Learning Certificate">
+                </div>
+                <h3 class="achievement-title">Machine Learning Certification</h3>
+                <p class="achievement-description">
+                    Completed advanced Machine Learning course covering neural networks and deep learning.
+                </p>
+                <p class="achievement-date">Issued: June 2023</p>
+            </div>
+            
+            <!-- Achievement 2 -->
+            <div class="achievement-card">
+                <div class="certificate-image">
+                    <img src="images/web-cert.jpg" alt="Web Development Certificate">
+                </div>
+                <h3 class="achievement-title">Advanced Web Development</h3>
+                <p class="achievement-description">
+                    Certified in modern web development technologies including React and Node.js.
+                </p>
+                <p class="achievement-date">Issued: March 2023</p>
+            </div>
+            
+            <!-- Achievement 3 -->
+            <div class="achievement-card">
+                <div class="certificate-image">
+                    <img src="images/hackathon.jpg" alt="Hackathon Winner">
+                </div>
+                <h3 class="achievement-title">AI Hackathon Winner</h3>
+                <p class="achievement-description">
+                    First place in national AI hackathon for computer vision solution.
+                </p>
+                <p class="achievement-date">Awarded: November 2022</p>
+            </div>
+            
+            <!-- Add more achievements as needed -->
+        </div>
+    </div>
+    
+    <footer>
+        <div class="social-links">
+            <a href="https://github.com/SeninAshraf" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/senin-ashraf-96a29b252" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/_senin___" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p class="footer-note">Designed & Built by Senin Ashraf</p>
+    </footer>
+</body>
+</html>
