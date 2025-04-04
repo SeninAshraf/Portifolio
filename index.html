@@ -989,6 +989,110 @@
         transform: translateY(-7px) rotate(-45deg);
     }
 }
+/* Achievements Section Styles */
+#achievements {
+    background-color: var(--primary);
+}
+
+.achievements-container {
+    max-width: 800px;
+    margin: 0 auto;
+    opacity: 0;
+    animation: fadeInUp 1s 0.3s forwards;
+}
+
+.achievement-card {
+    background-color: var(--dark);
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border: 1px solid rgba(139, 90, 43, 0.1);
+    transition: all 0.3s ease;
+}
+
+.achievement-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px -5px rgba(74, 63, 53, 0.15);
+}
+
+.certificate-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    border: 2px solid var(--secondary);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.certificate-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.achievement-title {
+    font-size: 1.4rem;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.achievement-description {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.achievement-date {
+    color: var(--secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.view-all-btn {
+    display: inline-flex;
+    align-items: center;
+    color: var(--secondary);
+    background: transparent;
+    border: 1px solid var(--secondary);
+    border-radius: 4px;
+    padding: 0.8rem 1.5rem;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin: 1rem auto;
+}
+
+.view-all-btn:hover {
+    background: rgba(139, 90, 43, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(139, 90, 43, 0.1);
+}
+
+.view-all-btn i {
+    margin-left: 0.5rem;
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+.view-all-btn:hover i {
+    transform: translateX(2px);
+}
+
+@media (max-width: 768px) {
+    .achievement-card {
+        padding: 1.5rem;
+    }
+    
+    .certificate-image {
+        width: 180px;
+        height: 180px;
+    }
+}
     </style>
 </head>
 <body>
@@ -999,6 +1103,7 @@
         <ul class="nav-links">
             <li><a href="#about" class="active">About</a></li>
             <li><a href="#projects">Projects</a></li>
+            <li><a href="#achievements">Achievements</a></li>
             <li><a href="#experience">Experience</a></li>
             <li><a href="#services">Services</a></li>
             <li><a href="#contact">Contact</a></li>
@@ -1012,8 +1117,9 @@
             <span class="burger-line"></span>
         </button>
         <ul class="nav-links">
-            <li><a href="#about" class="active">About</a></li>
+            <li><a href="#about">About</a></li>
             <li><a href="#projects">Projects</a></li>
+            <li><a href="#achievements">Achievements</a></li> <!-- New Achievements link -->
             <li><a href="#experience">Experience</a></li>
             <li><a href="#services">Services</a></li>
             <li><a href="#contact">Contact</a></li>
@@ -1175,6 +1281,30 @@
             </div>
         </div>
     </section>
+    <!-- Add this after the Projects section -->
+<section id="achievements">
+    <div class="section-title">
+        <h2>Achievements</h2>
+        <div class="line"></div>
+    </div>
+    <div class="achievements-container">
+        <div class="achievement-card">
+            <div class="certificate-image">
+                <img src="images/university.jpg" alt="Sample Certificate">
+            </div>
+            <div class="achievement-details">
+                <h3 class="achievement-title">University Rank Holder</h3>
+                <p class="achievement-description">
+                    Proud to have secured an 8.43 SGPA in the KTU S5 examination.
+                </p>
+                <p class="achievement-date">November 2024</p>
+            </div>
+        </div>
+        <a href="achievements.html" class="view-all-btn">
+            View All Achievements <i class="fas fa-arrow-right"></i>
+        </a>
+    </div>
+</section>
     
     <section id="experience">
         <div class="section-title">
