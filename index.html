@@ -741,6 +741,192 @@
 .detail-btn:hover {
     color: var(--light);
 }
+    /* Services Section Styles */
+    #services {
+        background-color: var(--darker);
+    }
+    
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+        opacity: 0;
+        animation: fadeInUp 1s 0.3s forwards;
+    }
+    
+    .service-card {
+        background-color: var(--dark);
+        border-radius: 8px;
+        padding: 2rem;
+        transition: all 0.3s ease;
+        text-align: center;
+        border: 1px solid rgba(139, 90, 43, 0.1);
+    }
+    
+    .service-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px -5px rgba(74, 63, 53, 0.15);
+    }
+    
+    .service-icon {
+        font-size: 2.5rem;
+        color: var(--secondary);
+        margin-bottom: 1.5rem;
+    }
+    
+    .service-title {
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: var(--text-primary);
+    }
+    
+    .service-description {
+        color: var(--text-secondary);
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+    }
+    
+    .service-cta {
+        display: inline-block;
+        color: var(--secondary);
+        background: transparent;
+        border: 1px solid var(--secondary);
+        border-radius: 4px;
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+    
+    .service-cta:hover {
+        background: rgba(139, 90, 43, 0.1);
+        transform: translateY(-2px);
+    }
+    
+    @media (max-width: 768px) {
+        .services-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+    /* Contact Section Styles */
+    #contact {
+        background-color: var(--primary);
+    }
+    
+    .contact-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        max-width: 1200px;
+        margin: 0 auto;
+        opacity: 0;
+        animation: fadeInUp 1s 0.3s forwards;
+    }
+    
+    .contact-info {
+        padding: 2rem;
+    }
+    
+    .contact-info h3 {
+        font-size: 1.8rem;
+        color: var(--text-primary);
+        margin-bottom: 1.5rem;
+    }
+    
+    .contact-info p {
+        color: var(--text-secondary);
+        margin-bottom: 2rem;
+        line-height: 1.6;
+    }
+    
+    .contact-method {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.5rem;
+    }
+    
+    .contact-method i {
+        font-size: 1.2rem;
+        color: var(--secondary);
+        margin-right: 1rem;
+    }
+    
+    .contact-method span {
+        color: var(--text-secondary);
+    }
+    
+    .contact-form {
+        background-color: var(--dark);
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+    
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+    
+    .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: var(--text-primary);
+        font-weight: 500;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 0.8rem;
+        border: 1px solid rgba(139, 90, 43, 0.2);
+        border-radius: 4px;
+        background-color: var(--primary);
+        color: var(--text-primary);
+        font-family: inherit;
+        transition: all 0.3s ease;
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus {
+        outline: none;
+        border-color: var(--secondary);
+        box-shadow: 0 0 0 2px rgba(139, 90, 43, 0.1);
+    }
+    
+    .submit-btn {
+        background-color: var(--secondary);
+        color: var(--primary);
+        border: none;
+        padding: 1rem 2rem;
+        font-size: 1rem;
+        font-weight: 500;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        width: 100%;
+    }
+    
+    .submit-btn:hover {
+        background-color: var(--accent);
+        transform: translateY(-2px);
+    }
+    
+    @media (max-width: 768px) {
+        .contact-container {
+            grid-template-columns: 1fr;
+            padding: 0 1rem;
+        }
+        
+        .contact-info {
+            padding: 1rem 0;
+            text-align: center;
+        }
+        
+        .contact-method {
+            justify-content: center;
+        }
+    }
     </style>
 </head>
 <body>
@@ -752,6 +938,7 @@
             <li><a href="#about" class="active">About</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#experience">Experience</a></li>
+            <li><a href="#services">Services</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
@@ -953,16 +1140,98 @@
             </div>
         </div>
     </section>
-    
-    <section id="contact">
-        <div class="contact-content">
-            <h2 class="contact-title">Get In Touch</h2>
-            <p class="contact-description">
-                I'm currently looking for new opportunities in AI and Data Science. Whether you have a question or just want to say hi, I'll do my best to get back to you!
-            </p>
-            <a href="mailto:seninashraf765@gmail.com" class="contact-email">Say Hello</a>
+    <section id="services">
+        <div class="section-title">
+            <h2>My Services</h2>
+            <div class="line"></div>
+        </div>
+        <div class="services-grid">
+            <!-- Web Design Card -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <h3 class="service-title">Web Design</h3>
+                <p class="service-description">
+                    Custom, responsive website design tailored to your brand. From simple landing pages to complex web applications with modern UI/UX principles.
+                </p>
+                <a href="#contact" class="service-cta">Get in Touch</a>
+            </div>
+            
+            <!-- Custom Projects Card -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <h3 class="service-title">Custom Projects</h3>
+                <p class="service-description">
+                    Bespoke software solutions built to your specifications. Whether you need automation, data processing, or specialized tools, I can develop it.
+                </p>
+                <a href="#contact" class="service-cta">Get in Touch</a>
+            </div>
+            
+            <!-- AI Consulting Card -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3 class="service-title">AI Consulting</h3>
+                <p class="service-description">
+                    Expert guidance on implementing AI solutions. From computer vision systems to predictive models, I'll help you leverage AI for your business needs.
+                </p>
+                <a href="#contact" class="service-cta">Get in Touch</a>
+            </div>
         </div>
     </section>
+    
+    
+    
+    <!-- Replace your current Contact section with this -->
+<section id="contact">
+    <div class="section-title">
+        <h2>Get In Touch</h2>
+        <div class="line"></div>
+    </div>
+    
+    <div class="contact-container">
+        <div class="contact-info">
+            <h3>Let's work together</h3>
+            <p>Have a project in mind or want to discuss potential opportunities? Feel free to reach out!</p>
+            
+            <div class="contact-method">
+                <i class="fas fa-envelope"></i>
+                <span>seninashraf765@gmail.com</span>
+            </div>
+        </div>
+        
+        <form action="https://formsubmit.co/seninashraf765@gmail.com" method="POST" class="contact-form">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html"> <!-- Replace with your actual thank you page URL -->
+            
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            
+            <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+    </div>
+</section>
     
     <footer>
         <div class="social-links">
