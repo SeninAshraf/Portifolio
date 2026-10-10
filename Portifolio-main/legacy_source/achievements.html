@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senin Ashraf | Achievements</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #f5f1e7; /* Cream background */
+            --secondary: #8b5a2b; /* Brown accent */
+            --accent: #a67c52; /* Lighter brown */
+            --light: #4a3f35; /* Dark brown for text */
+            --dark: #e8d9c5; /* Light cream for cards */
+            --darker: #d9c7b1; /* Slightly darker cream */
+            --text-primary: #2a2118; /* Black for main text */
+            --text-secondary: #5a4a3a; /* Dark brown for secondary text */
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Calibre', 'Inter', 'San Francisco', 'SF Pro Text', -apple-system, system-ui, sans-serif;
+        }
+        
+        body {
+            background-color: var(--primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* Achievements Page Specific Styles */
+        .achievements-page {
+            padding: 6rem 10% 4rem;
+            min-height: 100vh;
+        }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            color: var(--secondary);
+            background: transparent;
+            border: 1px solid var(--secondary);
+            border-radius: 4px;
+            padding: 0.8rem 1.5rem;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+        }
+        
+        .back-button:hover {
+            background: rgba(139, 90, 43, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .back-button i {
+            margin-right: 0.5rem;
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-right: 1.5rem;
+            white-space: nowrap;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+        
+        .section-title .line {
+            height: 1px;
+            background-color: var(--text-secondary);
+            width: 300px;
+            opacity: 0.3;
+        }
+        
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+        
+        .achievement-card {
+            background-color: var(--dark);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(139, 90, 43, 0.1);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .achievement-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px -10px rgba(74, 63, 53, 0.2);
+        }
+        
+        .certificate-image {
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .certificate-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .achievement-card:hover .certificate-image img {
+            transform: scale(1.05);
+        }
+        
+        .certificate-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: linear-gradient(to top, var(--dark), transparent);
+        }
+        
+        .achievement-content {
+            padding: 1.8rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        
+        .achievement-title {
+            font-size: 1.4rem;
+            color: var(--text-primary);
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+        
+        .achievement-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+        
+        .achievement-date {
+            color: var(--secondary);
+            font-size: 0.95rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            margin-top: auto;
+        }
+        
+        .achievement-date i {
+            margin-right: 8px;
+        }
+        
+        .view-certificate {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.6rem 1.2rem;
+            background-color: var(--secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .view-certificate:hover {
+            background-color: var(--accent);
+            transform: translateY(-2px);
+        }
+        
+        footer {
+            padding: 2.5rem 10%;
+            text-align: center;
+            background-color: var(--darker);
+            margin-top: 5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .social-links a {
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+            padding: 10px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary);
+            transform: translateY(-3px);
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .footer-note {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-top: 1rem;
+        }
+        
+        @media (max-width: 992px) {
+            .achievements-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .achievements-page {
+                padding: 5rem 2rem 2rem;
+            }
+            
+            .section-title {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .section-title .line {
+                width: 100px;
+                margin-top: 1rem;
+            }
+            
+            .achievements-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .certificate-image {
+                height: 240px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="achievements-page">
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+        
+        <div class="section-title">
+            <h2>My Achievements</h2>
+            <div class="line"></div>
+        </div>
+        
+        <div class="achievements-grid">
+            <!-- Achievement 1 -->
+            <div class="achievement-card">
+                <div class="certificate-image">
+                    <img src="images/NLP.jpg" alt="AI Essentials: Mastering NLP and computer vision">
+                </div>
+                <div class="achievement-content">
+                    <h3 class="achievement-title">AI Essentials: Mastering NLP and Computer Vision</h3>
+                    <p class="achievement-description">
+                        Completed advanced NLP course covering neural networks and deep learning techniques for natural language processing and computer vision applications.
+                    </p>
+                    <p class="achievement-date">
+                        <i class="far fa-calendar-alt"></i> Issued: January 2025
+                    </p>
+                    <a href="#" class="view-certificate">View Certificate</a>
+                </div>
+            </div>
+            
+            <!-- Achievement 2 -->
+            <div class="achievement-card">
+                <div class="certificate-image">
+                    <img src="images/hackathon.jpg" alt="Hackathon Participation Certificate">
+                </div>
+                <div class="achievement-content">
+                    <h3 class="achievement-title">Hackathon Participation Certificate</h3>
+                    <p class="achievement-description">
+                        Participated in AI Hackathon conducted by ADTEC MESCE, developing innovative solutions within a collaborative team environment.
+                    </p>
+                    <p class="achievement-date">
+                        <i class="far fa-calendar-alt"></i> Issued: January 2025
+                    </p>
+                    <a href="#" class="view-certificate">View Certificate</a>
+                </div>
+            </div>
+            
+            <!-- Achievement 3 -->
+            <div class="achievement-card">
+                <div class="certificate-image">
+                    <img src="images/udemy.jpg" alt="OpenCV Certificate">
+                </div>
+                <div class="achievement-content">
+                    <h3 class="achievement-title">OpenCV Mastery</h3>
+                    <p class="achievement-description">
+                        Learned comprehensive OpenCV techniques and successfully completed a practical project implementing computer vision algorithms.
+                    </p>
+                    <p class="achievement-date">
+                        <i class="far fa-calendar-alt"></i> Awarded: January 2025
+                    </p>
+                    <a href="#" class="view-certificate">View Certificate</a>
+                </div>
+            </div>
+            
+            <!-- Add more achievements as needed -->
+        </div>
+    </div>
+    
+    <footer>
+        <div class="social-links">
+            <a href="https://github.com/SeninAshraf" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/senin-ashraf-96a29b252" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/_senin___" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p class="footer-note">© 2025 · Designed & Built by Senin Ashraf</p>
+    </footer>
+</body>
+</html>
