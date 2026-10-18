@@ -28,7 +28,7 @@ const posts = [
 
 export const LinkedInUpdates = () => {
     return (
-        <section id="updates" className="py-24 px-4 sm:px-6 bg-surface-card border-b border-metagray-800 relative overflow-hidden">
+        <section id="linkedin-updates" className="py-24 px-4 sm:px-6 bg-surface-card border-b border-metagray-800 relative overflow-hidden">
             <div className="max-w-7xl mx-auto">
                 {/* MetaDesign Section Header */}
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
@@ -36,12 +36,18 @@ export const LinkedInUpdates = () => {
                         <div className="meta-heading">
                             <span>PROFESSIONAL BROADCASTS</span>
                         </div>
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold uppercase tracking-tight text-white flex items-center gap-3">
-                            <Linkedin className="text-primary" size={38} />
-                            LinkedIn Insights
-                        </h2>
+                        <div className="flex items-center gap-3.5 flex-wrap">
+                            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold uppercase tracking-tight text-white flex items-center gap-3">
+                                <Linkedin className="text-primary" size={38} />
+                                LinkedIn Insights
+                            </h2>
+                            <span className="text-[11px] font-mono font-bold tracking-wider px-2 py-0.5 rounded-[2px] bg-primary text-white flex items-center gap-1.5 shadow-sm shadow-primary/30">
+                                <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                                LIVE
+                            </span>
+                        </div>
                         <p className="text-metagray-300 max-w-2xl text-base sm:text-lg mt-3 font-light">
-                            Dispatches, hackathon summaries, and research insights shared with the engineering community.
+                            Live dispatches, hackathon summaries, and research insights shared with the engineering community.
                         </p>
                     </div>
 

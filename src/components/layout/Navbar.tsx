@@ -17,10 +17,11 @@ export const Navbar = () => {
         { label: 'About', href: '#about' },
         { label: 'Experience', href: '#experience' },
         { label: 'Work', href: '#work' },
-        { label: 'GitHub Activity', href: '#github-activity' },
+        { label: 'GitHub Activity', href: '#github-activity', isLive: true },
         { label: 'Achievements', href: '#achievements' },
         { label: 'Workshops', href: '#programs' },
         { label: 'Skills', href: '#skills' },
+        { label: 'LinkedIn', href: '#linkedin-updates', isLive: true },
         { label: 'Contact', href: '#contact' },
     ];
 
@@ -96,15 +97,20 @@ export const Navbar = () => {
                     </a>
 
                     {/* Desktop Menu */}
-                    <div className="hidden lg:flex items-center space-x-1 xl:space-x-2">
+                    <div className="hidden lg:flex items-center space-x-1 xl:space-x-1.5">
                         {navLinks.map((link) => (
                             <a
                                 key={link.label}
                                 href={link.href}
-                                className="text-xs uppercase font-bold tracking-wider text-metagray-300 hover:text-white hover:bg-white/5 px-3 py-2 rounded-sm transition-all duration-200 relative group"
+                                className="text-xs uppercase font-bold tracking-wider text-metagray-300 hover:text-white hover:bg-white/5 px-2.5 py-2 rounded-sm transition-all duration-200 relative group flex items-center gap-1.5"
                             >
-                                {link.label}
-                                <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-200" />
+                                <span>{link.label}</span>
+                                {link.isLive && (
+                                    <span className="text-[9px] bg-primary text-white font-mono px-1 py-0.2 rounded-[1px] leading-tight font-bold">
+                                        LIVE
+                                    </span>
+                                )}
+                                <span className="absolute bottom-0 left-2.5 right-2.5 h-[2px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-200" />
                             </a>
                         ))}
                     </div>
@@ -151,7 +157,14 @@ export const Navbar = () => {
                                     onClick={() => setIsOpen(false)}
                                     className="text-sm font-semibold uppercase tracking-wider text-metagray-200 hover:text-primary hover:bg-metagray-900 py-2.5 px-3 rounded-sm transition-colors flex items-center justify-between"
                                 >
-                                    <span>{link.label}</span>
+                                    <span className="flex items-center gap-2">
+                                        <span>{link.label}</span>
+                                        {link.isLive && (
+                                            <span className="text-[10px] bg-primary text-white font-mono px-1.5 py-0.5 rounded-[1px] font-bold">
+                                                LIVE
+                                            </span>
+                                        )}
+                                    </span>
                                     <ArrowUpRight size={14} className="text-metagray-600" />
                                 </a>
                             ))}

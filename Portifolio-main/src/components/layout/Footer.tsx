@@ -55,6 +55,12 @@ export const Footer = () => {
                                 </a>
                             </li>
                             <li>
+                                <a href="#linkedin-updates" className="hover:text-primary transition-colors flex items-center gap-1.5">
+                                    <span>LinkedIn Broadcasts</span>
+                                    <span className="text-[10px] bg-primary text-white font-mono px-1 py-0.2 rounded-[1px]">LIVE</span>
+                                </a>
+                            </li>
+                            <li>
                                 <a href="#achievements" className="hover:text-primary transition-colors">Hackathons & Awards</a>
                             </li>
                             <li>
