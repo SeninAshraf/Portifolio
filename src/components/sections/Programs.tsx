@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Calendar, MapPin, Users, Play, Sparkles, Terminal } from 'lucide-react';
+import { Calendar, MapPin, Users, Play, Sparkles, Terminal, Camera } from 'lucide-react';
 
 const programs = [
     {
@@ -30,6 +30,21 @@ const programs = [
             "Agile problem solving in competitive, fast-paced environments",
             "Cross-functional team mentoring on architecture and debugging",
             "Celebrating innovation, collaborative spirit, and hands-on coding culture"
+        ]
+    },
+    {
+        title: "Beyond Code",
+        subtitle: "A Theoretical Session on Software Product Development",
+        organization: "ADTEC-MESCE",
+        date: "2026",
+        audience: "S3 & S5 B.Tech Students (100+ Attendees)",
+        image: "/images/works/session.jpeg",
+        fallbackImage: "/images/works/session.jpeg",
+        description: `Conducted an interactive session introducing junior engineering students to modern AI engineering, API integration, and no-code/low-code development workflows.`,
+        keyTakeaways: [
+            "AI-Powered Development: Rapid prototyping and LLM prompt engineering.",
+            "AI & API Integration: Secure APIs, REST endpoints, and generative AI.",
+            "Developer Branding: GitHub projects, version control, and LinkedIn presence."
         ]
     }
 ];
@@ -73,8 +88,25 @@ export const Programs = () => {
                             {/* Red Side Accent Marker */}
                             <div className="absolute top-0 left-0 bottom-0 w-[3px] bg-primary group-hover:w-[5px] transition-all duration-300" />
 
-                            {/* Video Column (9:16 vertical reels format) */}
+                            {/* Media Column (9:16 reel or 4:5 photo) */}
                             <div className="lg:col-span-5 flex justify-center">
+                                {prog.image ? (
+                                <div className="relative w-full max-w-[340px] aspect-[4/5] bg-black rounded-sm overflow-hidden border border-metagray-800 group-hover:border-primary/50 transition-colors shadow-2xl">
+                                    <img
+                                        src={prog.image}
+                                        alt={prog.title}
+                                        className="w-full h-full object-cover"
+                                        loading="lazy"
+                                        onError={(e) => {
+                                            if (prog.fallbackImage) (e.currentTarget as HTMLImageElement).src = prog.fallbackImage;
+                                        }}
+                                    />
+                                    <div className="absolute top-3 left-3 bg-black/80 border border-metagray-800 text-[10px] font-mono uppercase text-primary px-2 py-0.5 pointer-events-none flex items-center gap-1">
+                                        <Camera size={10} />
+                                        SESSION
+                                    </div>
+                                </div>
+                                ) : (
                                 <div className="relative w-full max-w-[280px] aspect-[9/16] bg-black rounded-sm overflow-hidden border border-metagray-800 group-hover:border-primary/50 transition-colors shadow-2xl">
                                     <video
                                         src={prog.video}
@@ -83,7 +115,7 @@ export const Programs = () => {
                                         playsInline
                                         preload="metadata"
                                         onError={(e) => {
-                                            (e.currentTarget as HTMLVideoElement).src = prog.fallbackVideo;
+                                            if (prog.fallbackVideo) (e.currentTarget as HTMLVideoElement).src = prog.fallbackVideo;
                                         }}
                                     />
                                     <div className="absolute top-3 left-3 bg-black/80 border border-metagray-800 text-[10px] font-mono uppercase text-primary px-2 py-0.5 pointer-events-none flex items-center gap-1">
@@ -91,6 +123,7 @@ export const Programs = () => {
                                         EVENT REEL
                                     </div>
                                 </div>
+                                )}
                             </div>
 
                             {/* Content Column */}

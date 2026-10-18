@@ -92,7 +92,7 @@ export const Hero = () => {
                             </div>
                             <div>
                                 <div className="text-2xl sm:text-3xl font-display font-bold text-white flex items-center gap-1">
-                                    2<span className="text-primary">+</span>
+                                    3<span className="text-primary">+</span>
                                 </div>
                                 <div className="text-xs uppercase font-semibold tracking-wider text-metagray-400">
                                     Tech Workshops
