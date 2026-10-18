@@ -30,7 +30,7 @@ const achievements = [
         award: "First Class with Distinction",
         prize: "8.22 CGPA",
         description: "Secured 8.22 CGPA - First Class with Distinction in B.Tech Artificial Intelligence & Data Science, maintaining deep theoretical mastery alongside practical system engineering.",
-        image: "/university.jpg",
+        image: "/university.jpeg",
         icon: Award,
         badgeColor: "bg-primary/10 text-primary border-primary/30",
         year: "MESCE"
