@@ -95,7 +95,7 @@ export const Hero = () => {
                         initial={{ opacity: 0, x: -12, rotate: -10 }}
                         animate={{ opacity: 1, x: 0, rotate: -6 }}
                         transition={{ duration: 0.8, delay: 0.9, ease }}
-                        className="absolute -left-14 top-8 z-10 hidden rounded-full border border-line bg-card px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-ink shadow-paper lg:block"
+                        className="absolute -left-10 top-1 z-10 whitespace-nowrap rounded-full border border-line bg-card px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.14em] text-ink shadow-paper sm:-left-14 sm:top-4 sm:px-3 sm:py-1.5 sm:text-[10px] lg:top-8"
                     >
                         Based in Ponnani, Kerala
                     </motion.span>
@@ -107,10 +107,10 @@ export const Hero = () => {
                         initial={{ opacity: 0, x: 12, rotate: 10 }}
                         animate={{ opacity: 1, x: 0, rotate: 5 }}
                         transition={{ duration: 0.8, delay: 1.05, ease }}
-                        className="absolute -right-3 bottom-20 z-10 xl:-right-8 hidden rounded-[4px] bg-accent px-3 py-2 text-white shadow-lift lg:block"
+                        className="absolute -right-8 bottom-6 z-10 rounded-[4px] bg-accent px-2.5 py-1.5 text-white shadow-lift sm:-right-10 sm:bottom-10 sm:px-3 sm:py-2 lg:-right-3 lg:bottom-20 xl:-right-8"
                     >
                         <span className="block font-mono text-[9px] uppercase tracking-[0.18em] opacity-80">B.Tech AI &amp; DS</span>
-                        <span className="block font-serif text-xl leading-tight">Class of 2026</span>
+                        <span className="block font-serif text-lg leading-tight sm:text-xl">Class of 2026</span>
                     </motion.span>
                     <img
                         src="/senin-hero.jpg"

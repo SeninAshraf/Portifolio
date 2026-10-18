@@ -39,7 +39,7 @@ const timeline: TimelineItem[] = [
         kind: 'Internship',
         current: true,
         title: 'Software Engineer Intern',
-        org: 'Metadesign Software Solutions Pvt Ltd · Kerala, India',
+        org: 'Metadesign Software Solutions Pvt Ltd · Pune, India',
         summary:
             'End-to-end software engineering on production-grade systems, applying modular design patterns and structured architecture from schema to API.',
         project: {
