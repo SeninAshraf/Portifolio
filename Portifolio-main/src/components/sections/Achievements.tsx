@@ -25,15 +25,15 @@ const achievements = [
         year: "2024"
     },
     {
-        title: "KTU University Rank Holder",
+        title: "Academic Distinction",
         subtitle: "APJ Abdul Kalam Technological University",
-        award: "Academic Distinction",
-        prize: "8.43 SGPA (S5)",
-        description: "Ranked among top university scholars in B.Tech Artificial Intelligence & Data Science, maintaining deep theoretical mastery alongside practical system engineering.",
+        award: "First Class with Distinction",
+        prize: "8.22 CGPA",
+        description: "Secured 8.22 CGPA - First Class with Distinction in B.Tech Artificial Intelligence & Data Science, maintaining deep theoretical mastery alongside practical system engineering.",
         image: "/university.jpg",
         icon: Award,
         badgeColor: "bg-primary/10 text-primary border-primary/30",
-        year: "Nov 2024"
+        year: "MESCE"
     }
 ];
 

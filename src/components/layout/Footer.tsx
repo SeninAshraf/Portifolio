@@ -29,7 +29,7 @@ export const Footer = () => {
                         </p>
 
                         <div className="pt-2 text-xs font-mono text-metagray-500">
-                            MES College of Engineering • B.Tech AI & DS • Rank Holder (8.43 SGPA)
+                            MES College of Engineering • B.Tech AI & DS • 8.22 CGPA (First Class with Distinction)
                         </div>
                     </div>
 
@@ -41,6 +41,9 @@ export const Footer = () => {
                         <ul className="space-y-2 text-metagray-400">
                             <li>
                                 <a href="#about" className="hover:text-primary transition-colors">About & Philosophy</a>
+                            </li>
+                            <li>
+                                <a href="#experience" className="hover:text-primary transition-colors">Professional Experience</a>
                             </li>
                             <li>
                                 <a href="#work" className="hover:text-primary transition-colors">Selected Projects</a>

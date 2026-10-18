@@ -15,6 +15,7 @@ export const Navbar = () => {
 
     const navLinks = [
         { label: 'About', href: '#about' },
+        { label: 'Experience', href: '#experience' },
         { label: 'Work', href: '#work' },
         { label: 'GitHub Activity', href: '#github-activity' },
         { label: 'Achievements', href: '#achievements' },

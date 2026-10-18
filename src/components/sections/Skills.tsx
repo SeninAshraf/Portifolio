@@ -35,10 +35,10 @@ const skillCategories = [
 
 const journeyEvents = [
     {
-        title: "KTU University Rank Holder",
+        title: "8.22 CGPA - First Class with Distinction",
         subtitle: "APJ Abdul Kalam Technological University",
-        date: "Nov 2024",
-        description: "Secured an exceptional 8.43 SGPA in S5 university examinations, ranking among the top scholars across the department.",
+        date: "MESCE",
+        description: "Secured 8.22 CGPA - First Class with Distinction in B.Tech Artificial Intelligence & Data Science, ranking among top academic performers across the department.",
         icon: Award,
         isHighlight: true
     },

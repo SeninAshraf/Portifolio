@@ -82,7 +82,7 @@ export const About = () => {
                                     <h4 className="text-white font-bold text-sm uppercase tracking-wide">Academic Distinction</h4>
                                 </div>
                                 <p className="text-xs text-metagray-400 leading-relaxed">
-                                    Secured 8.43 SGPA KTU Rank Holder at MES College of Engineering, Kuttippuram.
+                                    Secured 8.22 CGPA - First Class with Distinction at MES College of Engineering, Kuttippuram.
                                 </p>
                             </div>
                         </div>
@@ -127,7 +127,7 @@ export const About = () => {
                                     </div>
                                     <div className="flex items-center justify-between text-xs py-2 border-b border-metagray-800">
                                         <span className="text-metagray-400 uppercase tracking-wider">Academic Grade</span>
-                                        <span className="text-primary font-bold">8.43 SGPA (Rank Holder)</span>
+                                        <span className="text-primary font-bold">8.22 CGPA (First Class with Distinction)</span>
                                     </div>
                                     <div className="flex items-center justify-between text-xs py-2">
                                         <span className="text-metagray-400 uppercase tracking-wider">Location</span>

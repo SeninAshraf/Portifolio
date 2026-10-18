@@ -76,10 +76,10 @@ export const Hero = () => {
                             </div>
                             <div>
                                 <div className="text-2xl sm:text-3xl font-display font-bold text-white flex items-center gap-1">
-                                    8.43
+                                    8.22
                                 </div>
                                 <div className="text-xs uppercase font-semibold tracking-wider text-metagray-400">
-                                    SGPA Rank Holder
+                                    CGPA Distinction
                                 </div>
                             </div>
                             <div>
