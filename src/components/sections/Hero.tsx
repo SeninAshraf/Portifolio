@@ -128,11 +128,11 @@ export const Hero = () => {
                                 {/* Profile Image with MetaDesign Monochrome Tone */}
                                 <div className="relative aspect-[4/5] overflow-hidden bg-black mb-4 group">
                                     <img
-                                        src="/profile.jpg"
+                                        src="/senin-hero.jpg"
                                         alt="Senin Ashraf"
                                         className="w-full h-full object-cover grayscale contrast-110 group-hover:grayscale-0 transition-all duration-500"
                                         onError={(e) => {
-                                            // Fallback if profile.jpg fails
+                                            // Fallback if senin-hero.jpg fails
                                             (e.currentTarget as HTMLImageElement).src = '/senin.jpg';
                                         }}
                                     />

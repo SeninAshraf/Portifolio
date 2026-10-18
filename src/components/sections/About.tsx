@@ -103,9 +103,9 @@ export const About = () => {
                             <div className="bg-surface-card border border-metagray-800 p-5 shadow-2xl">
                                 <div className="aspect-[3/4] overflow-hidden bg-black mb-5 relative group">
                                     <img
-                                        src="/senin.jpg"
+                                        src="/senin-about.jpg"
                                         alt="Senin Ashraf"
-                                        className="w-full h-full object-cover grayscale contrast-110 group-hover:grayscale-0 transition-all duration-500"
+                                        className="w-full h-full object-cover object-[72%_center] grayscale contrast-110 group-hover:grayscale-0 transition-all duration-500"
                                         onError={(e) => {
                                             (e.currentTarget as HTMLImageElement).src = '/profile.jpg';
                                         }}

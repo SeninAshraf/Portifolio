@@ -4,9 +4,8 @@ import {
     Code2, 
     Database, 
     Layers, 
-    Award, 
     BookOpen, 
-    Briefcase,
+    Bot,
     Sparkles
 } from 'lucide-react';
 
@@ -35,28 +34,21 @@ const skillCategories = [
 
 const journeyEvents = [
     {
-        title: "8.22 CGPA - First Class with Distinction",
-        subtitle: "APJ Abdul Kalam Technological University",
-        date: "MESCE",
-        description: "Secured 8.22 CGPA - First Class with Distinction in B.Tech Artificial Intelligence & Data Science, ranking among top academic performers across the department.",
-        icon: Award,
-        isHighlight: true
-    },
-    {
         title: "B.Tech in AI & Data Science",
         subtitle: "MES College of Engineering, Kuttippuram",
-        date: "2022 — Present",
+        date: "2022 — 2026",
         description: "Specializing in artificial intelligence, neural networks, computer vision, data analysis, and software engineering.",
         icon: BookOpen,
         isHighlight: false
     },
     {
-        title: "Web Development & Software Intern",
-        subtitle: "Applied Industry Experience",
-        date: "Summer 2023",
-        description: "Built full-stack components, developed clean user interfaces, and integrated API endpoints in agile sprints.",
-        icon: Briefcase,
-        isHighlight: false
+        title: "Agentic AI",
+        subtitle: "DeepLearning.AI · Coursera",
+        date: "Currently Learning",
+        description: "Building autonomous, multi-step AI agents with reflection, tool use, planning, and multi-agent workflows.",
+        link: "https://coursera.org/learn/dlai-agentic-ai",
+        icon: Bot,
+        isHighlight: true
     }
 ];
 
@@ -162,7 +154,11 @@ export const Skills = () => {
                                         </div>
 
                                         <h4 className="text-base font-bold text-white mb-0.5">
-                                            {evt.title}
+                                            {'link' in evt && evt.link ? (
+                                                <a href={evt.link} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+                                                    {evt.title}
+                                                </a>
+                                            ) : evt.title}
                                         </h4>
                                         <div className="text-xs font-medium text-metagray-400 mb-2">
                                             {evt.subtitle}
