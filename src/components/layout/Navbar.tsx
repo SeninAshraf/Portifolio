@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Briefcase, FileText, FolderGit2, Mail, Presentation, Trophy, User, BarChart3 } from 'lucide-react';
 import { useActiveSection } from '../../hooks/useActiveSection';
 import { ThemeToggle } from '../ui/ThemeToggle';
+import { openResume } from '../../lib/resume';
 
 const navLinks = [
     { id: 'about', label: 'About', Icon: User },
@@ -70,7 +71,7 @@ export const Navbar = () => {
                         </a>
                     ))}
                     <span className="mx-0.5 h-5 w-px bg-line" aria-hidden />
-                    <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className={itemClass} aria-label="Résumé (PDF)">
+                    <a href="/resume.pdf" onClick={openResume} className={itemClass} aria-label="Résumé" aria-haspopup="dialog">
                         <FileText size={16} />
                         <Tooltip text="Résumé" />
                     </a>

@@ -4,6 +4,7 @@ import { ArrowUpRight, Check, Copy, Github, Instagram, Linkedin, MapPin, Send } 
 import { Section } from '../ui/Section';
 import { Reveal } from '../ui/Reveal';
 import { Barcode } from '../ui/Barcode';
+import { openResume } from '../../lib/resume';
 
 const EMAIL = 'seninashraf765@gmail.com';
 
@@ -88,8 +89,8 @@ export const Contact = () => {
 
                 <motion.a
                     href="/resume.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    onClick={openResume}
+                    aria-haspopup="dialog"
                     {...cardMotion(-2, 0.16)}
                     className="block w-44 rounded-[4px] bg-[#f3efe6] p-4 text-[#1a1a1a] shadow-lift"
                 >

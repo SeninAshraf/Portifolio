@@ -10,6 +10,7 @@ import { Skills } from './components/sections/Skills';
 import { LinkedInUpdates } from './components/sections/LinkedInUpdates';
 import { Contact } from './components/sections/Contact';
 import { LenisWrapper } from './components/layout/LenisWrapper';
+import { ResumeSheet } from './components/ui/ResumeSheet';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         </main>
         <Footer />
       </div>
+      <ResumeSheet />
       {/* Soft fade where content meets the bottom edge, as in a printed page */}
       <div aria-hidden className="pointer-events-none fixed inset-x-0 bottom-0 z-40 h-16 bg-gradient-to-t from-paper to-transparent" />
     </LenisWrapper>
