@@ -7,52 +7,75 @@ interface LinkedInPostProps {
     content: string;
     tags: string[];
     link: string;
-    image?: string; // Optional image for the post
 }
 
-export const LinkedInPostCard = ({ author, date, content, tags, link, image }: LinkedInPostProps) => {
+export const LinkedInPostCard = ({ author, date, content, tags, link }: LinkedInPostProps) => {
     return (
         <motion.div
-            whileHover={{ y: -8, borderColor: 'rgba(255, 77, 0, 0.5)' }}
-            className="bg-surface border border-white/5 rounded-2xl overflow-hidden shadow-2xl flex flex-col h-full transition-colors duration-300 relative group"
+            whileHover={{ y: -4 }}
+            className="bg-surface border border-metagray-800 hover:border-primary transition-all duration-300 p-6 flex flex-col justify-between h-full relative group"
         >
-            {/* Glow Effect */}
-            <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+            {/* Top Red Accent Line */}
+            <div className="absolute top-0 left-0 w-0 group-hover:w-full h-[2px] bg-primary transition-all duration-300" />
 
-            {/* Header */}
-            <div className="p-6 flex gap-4 items-center relative z-10">
-                <div className="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center text-primary border border-white/10 group-hover:scale-110 transition-transform duration-300">
-                    <Linkedin size={22} />
-                </div>
-                <div>
-                    <h4 className="font-bold text-white text-base group-hover:text-primary transition-colors">{author}</h4>
-                    <p className="text-xs text-gray-400 font-medium tracking-wide uppercase">{date}</p>
-                </div>
-                <a href={link} target="_blank" rel="noopener noreferrer" className="ml-auto text-gray-500 hover:text-white bg-white/5 p-2 rounded-full hover:bg-primary hover:border-primary border border-white/10 transition-all duration-300">
-                    <ExternalLink size={18} />
-                </a>
-            </div>
+            <div>
+                {/* Header */}
+                <div className="flex items-center justify-between pb-4 mb-4 border-b border-metagray-800/80">
+                    <div className="flex items-center gap-3">
+                        <div className="w-9 h-9 bg-primary/10 border border-primary/30 text-primary flex items-center justify-center shrink-0">
+                            <Linkedin size={18} />
+                        </div>
+                        <div>
+                            <h4 className="font-bold text-white text-sm group-hover:text-primary transition-colors">
+                                {author}
+                            </h4>
+                            <p className="text-[11px] font-mono text-metagray-400">
+                                {date}
+                            </p>
+                        </div>
+                    </div>
 
-            {/* Content */}
-            <div className="px-6 pb-6 flex-grow relative z-10">
-                <p className="text-gray-300 text-sm leading-relaxed mb-6 whitespace-pre-line border-l-2 border-white/10 pl-4">
-                    {content.length > 150 ? content.slice(0, 150) + '...' : content}
+                    <a
+                        href={link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-1.5 text-metagray-400 hover:text-white hover:bg-metagray-800 rounded-sm transition-colors"
+                        aria-label="View on LinkedIn"
+                    >
+                        <ExternalLink size={16} />
+                    </a>
+                </div>
+
+                {/* Content */}
+                <p className="text-metagray-300 text-sm leading-relaxed mb-6 font-light">
+                    {content}
                 </p>
-                <div className="flex flex-wrap gap-2 mt-auto">
-                    {tags.map(tag => (
-                        <span key={tag} className="px-3 py-1 bg-white/5 text-primary text-xs font-medium rounded-full border border-white/10">#{tag}</span>
+
+                {/* Tags */}
+                <div className="flex flex-wrap gap-1.5 mb-6">
+                    {tags.map((tag) => (
+                        <span
+                            key={tag}
+                            className="text-[11px] font-mono text-metagray-400 bg-black/40 border border-metagray-800/80 px-2 py-0.5 rounded-sm"
+                        >
+                            #{tag}
+                        </span>
                     ))}
                 </div>
             </div>
 
-            {/* Optional Image Area */}
-            {image && (
-                <div className="w-full h-48 bg-gray-900 border-t border-white/5 relative overflow-hidden group-hover:border-primary/20 transition-colors">
-                    <div className="absolute inset-0 flex items-center justify-center text-gray-600 bg-white/5">
-                        <span className="text-xs font-medium tracking-wider">ATTACHMENT PREVIEW</span>
-                    </div>
-                </div>
-            )}
+            {/* Bottom Footer */}
+            <div className="pt-3 border-t border-metagray-800/80 flex items-center justify-between text-xs font-mono">
+                <span className="text-metagray-500 uppercase tracking-wider text-[11px]">Verified Post</span>
+                <a
+                    href={link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline font-bold flex items-center gap-1 text-[11px]"
+                >
+                    Read on LinkedIn →
+                </a>
+            </div>
         </motion.div>
     );
 };

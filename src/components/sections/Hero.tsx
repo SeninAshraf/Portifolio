@@ -1,72 +1,198 @@
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, FileText, Github, Sparkles, Terminal, Award, GitBranch } from 'lucide-react';
 
 export const Hero = () => {
     return (
-        <section className="min-h-screen flex items-center pt-20 px-6 relative overflow-hidden">
-            {/* Background Elements */}
-            <div className="absolute top-20 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] -z-10" />
-            <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-[100px] -z-10" />
-
-            <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-                {/* Content */}
+        <section className="relative pt-32 lg:pt-36 pb-20 px-4 sm:px-6 overflow-hidden bg-meta-grid bg-radial-gradient">
+            <div className="max-w-7xl mx-auto">
+                {/* MetaDesign Signature Philosophy Banner */}
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: -15 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
+                    transition={{ duration: 0.6 }}
+                    className="mb-10 p-5 sm:p-6 bg-surface/90 border-l-4 border-primary border-y border-r border-metagray-800 backdrop-blur-md shadow-2xl relative"
                 >
-                    <h2 className="text-secondary text-lg mb-4 font-medium tracking-wide">AI & DATA SCIENTIST</h2>
-                    <h1 className="text-5xl md:text-7xl font-display font-bold leading-[1.1] mb-6">
-                        Building <br />
-                        <span className="text-primary">Intelligence</span> <br />
-                        from Data.
-                    </h1>
-                    <p className="text-gray-400 text-lg max-w-md mb-8 leading-relaxed">
-                        I craft intelligent systems and data-driven solutions that solve complex real-world problems.
-                    </p>
-
-                    <div className="flex flex-wrap gap-4">
-                        <a
-                            href="/resume.pdf"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="btn btn-primary group rounded-full"
-                        >
-                            View My Resume
-                            <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
-                        </a>
-                        <a href="#work" className="btn bg-white/5 hover:bg-white/10 border border-white/10 rounded-full">
-                            View My Work
-                        </a>
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div className="relative pl-2 sm:pl-4">
+                            <span className="text-4xl sm:text-5xl text-primary/30 font-serif absolute -top-4 -left-2 select-none">“</span>
+                            <p className="font-quote italic text-base sm:text-lg md:text-xl text-metagray-200 tracking-wide leading-relaxed">
+                                Perfection is achieved not when there is nothing more to add, but when there is nothing left to take away.
+                            </p>
+                            <span className="block mt-2 text-xs sm:text-sm font-bold tracking-widest text-primary uppercase">
+                                — Antoine de Saint-Exupéry <span className="text-metagray-500 font-normal">| Design Philosophy</span>
+                            </span>
+                        </div>
+                        <div className="shrink-0 flex items-center gap-2 self-start md:self-center bg-black/60 px-3 py-1.5 rounded-sm border border-metagray-800 text-xs text-metagray-300">
+                            <Terminal size={14} className="text-primary" />
+                            <span>AI & SYSTEMS ARCHITECTURE</span>
+                        </div>
                     </div>
                 </motion.div>
 
-                {/* Visual / Image */}
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                    className="relative hidden md:block"
-                >
-                    {/* Placeholder for abstract 3D element or Profile Image */}
-                    <div className="relative w-full aspect-square bg-gradient-to-tr from-gray-900 to-gray-800 rounded-3xl overflow-hidden border border-white/10 shadow-2xl p-8 flex items-center justify-center">
-                        <div className="text-center">
-                            <div className="text-6xl font-bold font-display text-white/5">AI</div>
-                            <div className="text-6xl font-bold font-display text-white/5">DATA</div>
-                            <div className="text-6xl font-bold font-display text-white/5">CODE</div>
+                {/* Main Hero Grid */}
+                <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+                    {/* Text Column */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 25 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.15 }}
+                        className="lg:col-span-7 flex flex-col justify-center"
+                    >
+                        {/* Section Tag */}
+                        <div className="meta-heading">
+                            <span>PORTFOLIO // SENIN ASHRAF</span>
                         </div>
 
-                        {/* Floating Cards Mockup */}
-                        <motion.div
-                            animate={{ y: [0, -20, 0] }}
-                            transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-                            className="absolute inset-0 flex items-center justify-center"
-                        >
-                            {/* Once we have a 3D spline or image, place it here */}
-                            <div className="w-64 h-64 bg-primary rounded-full blur-3xl opacity-20 animate-pulse"></div>
-                        </motion.div>
-                    </div>
-                </motion.div>
+                        {/* High-Impact Main Heading */}
+                        <h1 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-bold font-display uppercase tracking-tight leading-[1.08] mb-6 text-white">
+                            Building <br />
+                            <span className="text-primary inline-flex items-center gap-2">
+                                Intelligence
+                                <Sparkles size={32} className="hidden sm:inline-block animate-pulse text-primary" />
+                            </span> <br />
+                            From Real Data.
+                        </h1>
+
+                        {/* Description */}
+                        <p className="text-metagray-300 text-base sm:text-lg leading-relaxed mb-8 max-w-2xl font-light">
+                            I am an Artificial Intelligence & Data Science Engineer specialized in <span className="text-white font-medium">Computer Vision</span>, <span className="text-white font-medium">Deep Learning</span>, and <span className="text-white font-medium">Full-Stack Automation</span>. Transforming raw algorithms into robust, production-grade applications.
+                        </p>
+
+                        {/* Action Buttons */}
+                        <div className="flex flex-wrap items-center gap-4 mb-10">
+                            <a
+                                href="#work"
+                                className="btn btn-primary group"
+                            >
+                                <span>Explore Projects</span>
+                                <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                            </a>
+
+                            <a
+                                href="#github-activity"
+                                className="btn btn-outline group flex items-center gap-2"
+                            >
+                                <Github size={16} className="text-primary" />
+                                <span>GitHub Commits</span>
+                            </a>
+
+                            <a
+                                href="/resume.pdf"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="btn btn-outline flex items-center gap-2 hover:border-white"
+                            >
+                                <FileText size={16} />
+                                <span>Download CV</span>
+                            </a>
+                        </div>
+
+                        {/* Credential Metrics Bar */}
+                        <div className="pt-6 border-t border-metagray-800/80 grid grid-cols-2 sm:grid-cols-4 gap-4">
+                            <div>
+                                <div className="text-2xl sm:text-3xl font-display font-bold text-white flex items-center gap-1">
+                                    33<span className="text-primary">+</span>
+                                </div>
+                                <div className="text-xs uppercase font-semibold tracking-wider text-metagray-400">
+                                    Public Repos
+                                </div>
+                            </div>
+                            <div>
+                                <div className="text-2xl sm:text-3xl font-display font-bold text-white flex items-center gap-1">
+                                    8.43
+                                </div>
+                                <div className="text-xs uppercase font-semibold tracking-wider text-metagray-400">
+                                    SGPA Rank Holder
+                                </div>
+                            </div>
+                            <div>
+                                <div className="text-2xl sm:text-3xl font-display font-bold text-white flex items-center gap-1">
+                                    2<span className="text-primary">x</span>
+                                </div>
+                                <div className="text-xs uppercase font-semibold tracking-wider text-metagray-400">
+                                    Hackathon Wins
+                                </div>
+                            </div>
+                            <div>
+                                <div className="text-2xl sm:text-3xl font-display font-bold text-white flex items-center gap-1">
+                                    2<span className="text-primary">+</span>
+                                </div>
+                                <div className="text-xs uppercase font-semibold tracking-wider text-metagray-400">
+                                    Tech Workshops
+                                </div>
+                            </div>
+                        </div>
+                    </motion.div>
+
+                    {/* Visual / Profile Card Column */}
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.6, delay: 0.25 }}
+                        className="lg:col-span-5 relative"
+                    >
+                        {/* MetaDesign Framed Card Container */}
+                        <div className="relative mx-auto max-w-md">
+                            {/* Decorative Red Accent Frame Behind */}
+                            <div className="absolute -top-3 -right-3 w-full h-full border-2 border-primary rounded-none pointer-events-none -z-10" />
+                            <div className="absolute -bottom-3 -left-3 w-20 h-20 border-b-2 border-l-2 border-primary pointer-events-none -z-10" />
+
+                            {/* Main Card */}
+                            <div className="bg-surface border border-metagray-800 p-4 sm:p-5 shadow-2xl relative">
+                                {/* Card Header Strip */}
+                                <div className="flex items-center justify-between pb-3 mb-4 border-b border-metagray-800 text-xs">
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-2.5 h-2.5 rounded-full bg-primary" />
+                                        <span className="font-bold uppercase tracking-wider text-white">ENGINEER PROFILE</span>
+                                    </div>
+                                    <span className="font-mono text-metagray-400 text-[11px]">ID: SA-AI2026</span>
+                                </div>
+
+                                {/* Profile Image with MetaDesign Monochrome Tone */}
+                                <div className="relative aspect-[4/5] overflow-hidden bg-black mb-4 group">
+                                    <img
+                                        src="/profile.jpg"
+                                        alt="Senin Ashraf"
+                                        className="w-full h-full object-cover grayscale contrast-110 group-hover:grayscale-0 transition-all duration-500"
+                                        onError={(e) => {
+                                            // Fallback if profile.jpg fails
+                                            (e.currentTarget as HTMLImageElement).src = '/senin.jpg';
+                                        }}
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80" />
+
+                                    {/* Overlay Badge */}
+                                    <div className="absolute bottom-3 left-3 right-3 p-3 bg-black/85 backdrop-blur-md border border-metagray-800 flex items-center justify-between">
+                                        <div>
+                                            <div className="text-white font-bold text-sm tracking-wide">SENIN ASHRAF</div>
+                                            <div className="text-xs text-primary font-medium">B.Tech AI & Data Science</div>
+                                        </div>
+                                        <div className="flex items-center gap-1.5 text-xs text-emerald-400 bg-emerald-950/60 border border-emerald-800/60 px-2 py-0.5 rounded-sm">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                                            Active
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Core Tags */}
+                                <div className="space-y-2 text-xs">
+                                    <div className="flex items-center justify-between p-2 bg-black/40 border border-metagray-800/80">
+                                        <span className="text-metagray-400 flex items-center gap-1.5">
+                                            <Award size={13} className="text-primary" /> Institution
+                                        </span>
+                                        <span className="text-white font-medium">MES College of Engg.</span>
+                                    </div>
+                                    <div className="flex items-center justify-between p-2 bg-black/40 border border-metagray-800/80">
+                                        <span className="text-metagray-400 flex items-center gap-1.5">
+                                            <GitBranch size={13} className="text-primary" /> Primary Focus
+                                        </span>
+                                        <span className="text-white font-medium">Computer Vision & ML</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </motion.div>
+                </div>
             </div>
         </section>
     );
