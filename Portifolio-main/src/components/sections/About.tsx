@@ -1,154 +1,115 @@
 import { motion } from 'framer-motion';
-import { Brain, Eye, Cpu, Award, CheckCircle } from 'lucide-react';
+import { ArrowRight, Award, Brain, Cpu, Eye } from 'lucide-react';
+import { Section } from '../ui/Section';
+import { Reveal } from '../ui/Reveal';
+import { Tape } from '../ui/Tape';
 
-export const About = () => {
-    return (
-        <section id="about" className="py-24 px-4 sm:px-6 bg-surface relative overflow-hidden border-b border-metagray-800">
-            <div className="max-w-7xl mx-auto">
-                {/* Section Header */}
-                <div className="meta-heading">
-                    <span>BIOGRAPHY & BACKGROUND</span>
-                </div>
+const pillars = [
+    {
+        icon: Eye,
+        title: 'Computer Vision',
+        text: 'Facial biometrics, YOLO object detection, real-time video stream processing and LBPH algorithms.',
+    },
+    {
+        icon: Brain,
+        title: 'Applied AI & NLP',
+        text: 'Conversational AI agents, LLM prompting, domain-specific faculty advisors and audio synthesis.',
+    },
+    {
+        icon: Cpu,
+        title: 'Full-Stack Architecture',
+        text: 'Modern React, TypeScript and Python FastAPI, responsive UI systems and robust REST APIs.',
+    },
+    {
+        icon: Award,
+        title: 'Academic Distinction',
+        text: '8.22 CGPA — First Class with Distinction at MES College of Engineering, Kuttippuram.',
+    },
+];
 
-                <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-                    {/* Left: Detailed Narrative & Pillars */}
-                    <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="lg:col-span-7 space-y-6"
-                    >
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold uppercase tracking-tight text-white leading-tight">
-                            Designing Robust <br />
-                            <span className="text-primary">Intelligence & Systems</span> That Endure.
-                        </h2>
+const facts = [
+    ['Degree', 'B.Tech, AI & Data Science'],
+    ['College', 'MESCE, Kuttippuram'],
+    ['Grade', '8.22 CGPA · First Class with Distinction'],
+    ['Based in', 'Ponnani, Kerala, India'],
+];
 
-                        <div className="space-y-4 text-metagray-300 text-base sm:text-lg leading-relaxed font-light">
-                            <p>
-                                I am <strong className="text-white font-semibold">Senin Ashraf</strong>, a forward-looking Artificial Intelligence & Data Science Engineer based in Kerala, India. My engineering ethos revolves around transforming abstract mathematical concepts and deep neural architectures into tangible, reliable software edifices.
-                            </p>
-                            <p>
-                                Rather than viewing AI as merely black-box algorithms, I approach it from first principles: from crafting real-time computer vision pipelines (YOLO, OpenCV) to building multilingual conversational assistants capable of speaking regional languages like Malayalam and English seamlessly.
-                            </p>
-                            <p>
-                                Beyond personal code, I actively foster community through student workshops (such as <em>Prompt to Code</em> and <em>ARCANE</em>) and technical hackathons where I have earned multiple top podium finishes.
-                            </p>
-                        </div>
+export const About = () => (
+    <Section id="about" index="01" label="About" title="The engineer" emphasis="behind the code">
+        <div className="mx-auto grid max-w-wide items-start gap-14 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:gap-16">
+            {/* Polaroid portrait */}
+            <Reveal className="mx-auto w-full max-w-[320px] md:sticky md:top-28">
+                <motion.figure
+                    initial={{ rotate: -3 }}
+                    whileHover={{ rotate: 0, y: -4 }}
+                    transition={{ type: 'spring', stiffness: 200, damping: 18 }}
+                    className="paper relative p-3 pb-12"
+                >
+                    <Tape tone="accent" className="-top-3 left-1/2 -translate-x-1/2 -rotate-3" />
+                    <div className="aspect-[4/5] overflow-hidden bg-sunk">
+                        <img
+                            src="/senin-about.jpg"
+                            alt="Senin Ashraf in a dark double-breasted blazer"
+                            loading="lazy"
+                            className="h-full w-full object-cover object-[72%_center] grayscale transition-[filter] duration-700 hover:grayscale-0"
+                            onError={(e) => {
+                                (e.currentTarget as HTMLImageElement).src = '/profile.jpg';
+                            }}
+                        />
+                    </div>
+                    <figcaption className="absolute inset-x-0 bottom-3 text-center font-serif text-xl italic text-ink">
+                        Senin Ashraf, AI engineer
+                    </figcaption>
+                </motion.figure>
+            </Reveal>
 
-                        {/* Core Competency Highlights Grid */}
-                        <div className="grid sm:grid-cols-2 gap-4 pt-6">
-                            <div className="p-4 bg-surface-card border border-metagray-800 hover:border-primary/50 transition-colors">
-                                <div className="flex items-center gap-3 mb-2">
-                                    <div className="w-8 h-8 rounded-sm bg-primary/10 border border-primary/30 text-primary flex items-center justify-center">
-                                        <Eye size={18} />
-                                    </div>
-                                    <h4 className="text-white font-bold text-sm uppercase tracking-wide">Computer Vision</h4>
+            <div>
+                <Reveal className="space-y-5 text-[17px] leading-[1.75]">
+                    <p className="font-serif text-[1.7rem] leading-snug text-ink">
+                        I turn abstract maths and deep neural architectures into software people can rely on.
+                    </p>
+                    <p>
+                        I'm an Artificial Intelligence &amp; Data Science engineer based in Kerala, India. Rather than treating AI as a black box, I work
+                        from first principles — from real-time computer vision pipelines with YOLO and OpenCV to multilingual conversational assistants
+                        that move seamlessly between Malayalam and English.
+                    </p>
+                    <p>
+                        Beyond my own code, I build community: running student workshops like <em>Prompt to Code</em> and <em>ARCANE</em>, and competing in
+                        hackathons where I've earned multiple podium finishes.
+                    </p>
+                </Reveal>
+
+                <Reveal delay={0.1} className="mt-12">
+                    <p className="label mb-4">What I work on</p>
+                    <ul className="divide-y divide-line border-y border-line">
+                        {pillars.map(({ icon: Icon, title, text }) => (
+                            <li key={title} className="group flex gap-4 py-4">
+                                <span className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-full border border-line text-muted transition-colors group-hover:border-accent group-hover:text-accent">
+                                    <Icon size={15} />
+                                </span>
+                                <div>
+                                    <h3 className="text-[15px] font-semibold">{title}</h3>
+                                    <p className="text-[15px] leading-relaxed text-muted">{text}</p>
                                 </div>
-                                <p className="text-xs text-metagray-400 leading-relaxed">
-                                    Facial biometrics, YOLO object detection, real-time video stream processing, LBPH algorithms.
-                                </p>
+                            </li>
+                        ))}
+                    </ul>
+                </Reveal>
+
+                <Reveal delay={0.15} className="mt-10">
+                    <dl className="grid grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2">
+                        {facts.map(([k, v]) => (
+                            <div key={k}>
+                                <dt className="label">{k}</dt>
+                                <dd className="text-[15px] text-ink">{v}</dd>
                             </div>
-
-                            <div className="p-4 bg-surface-card border border-metagray-800 hover:border-primary/50 transition-colors">
-                                <div className="flex items-center gap-3 mb-2">
-                                    <div className="w-8 h-8 rounded-sm bg-primary/10 border border-primary/30 text-primary flex items-center justify-center">
-                                        <Brain size={18} />
-                                    </div>
-                                    <h4 className="text-white font-bold text-sm uppercase tracking-wide">Applied AI & NLP</h4>
-                                </div>
-                                <p className="text-xs text-metagray-400 leading-relaxed">
-                                    Conversational AI agents, LLM prompting, custom domain faculty advisors, audio synthesis.
-                                </p>
-                            </div>
-
-                            <div className="p-4 bg-surface-card border border-metagray-800 hover:border-primary/50 transition-colors">
-                                <div className="flex items-center gap-3 mb-2">
-                                    <div className="w-8 h-8 rounded-sm bg-primary/10 border border-primary/30 text-primary flex items-center justify-center">
-                                        <Cpu size={18} />
-                                    </div>
-                                    <h4 className="text-white font-bold text-sm uppercase tracking-wide">Full-Stack Architecture</h4>
-                                </div>
-                                <p className="text-xs text-metagray-400 leading-relaxed">
-                                    Modern React, TypeScript, Python FastAPI, responsive UI/UX systems, robust REST APIs.
-                                </p>
-                            </div>
-
-                            <div className="p-4 bg-surface-card border border-metagray-800 hover:border-primary/50 transition-colors">
-                                <div className="flex items-center gap-3 mb-2">
-                                    <div className="w-8 h-8 rounded-sm bg-primary/10 border border-primary/30 text-primary flex items-center justify-center">
-                                        <Award size={18} />
-                                    </div>
-                                    <h4 className="text-white font-bold text-sm uppercase tracking-wide">Academic Distinction</h4>
-                                </div>
-                                <p className="text-xs text-metagray-400 leading-relaxed">
-                                    Secured 8.22 CGPA - First Class with Distinction at MES College of Engineering, Kuttippuram.
-                                </p>
-                            </div>
-                        </div>
-                    </motion.div>
-
-                    {/* Right: Architectural Image & Credentials Card */}
-                    <motion.div
-                        initial={{ opacity: 0, x: 20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="lg:col-span-5 relative"
-                    >
-                        <div className="relative mx-auto max-w-sm">
-                            {/* MetaDesign Offset Frame */}
-                            <div className="absolute -top-3 -left-3 w-full h-full border-2 border-primary pointer-events-none -z-10" />
-
-                            <div className="bg-surface-card border border-metagray-800 p-5 shadow-2xl">
-                                <div className="aspect-[3/4] overflow-hidden bg-black mb-5 relative group">
-                                    <img
-                                        src="/senin-about.jpg"
-                                        alt="Senin Ashraf"
-                                        className="w-full h-full object-cover object-[72%_center] grayscale contrast-110 group-hover:grayscale-0 transition-all duration-500"
-                                        onError={(e) => {
-                                            (e.currentTarget as HTMLImageElement).src = '/profile.jpg';
-                                        }}
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                                    <div className="absolute bottom-3 left-3 text-xs font-mono text-metagray-300">
-                                        SENIN ASHRAF // AI ENGINEER
-                                    </div>
-                                </div>
-
-                                <div className="space-y-3">
-                                    <div className="flex items-center justify-between text-xs py-2 border-b border-metagray-800">
-                                        <span className="text-metagray-400 uppercase tracking-wider">Degree</span>
-                                        <span className="text-white font-bold">B.Tech (AI & Data Science)</span>
-                                    </div>
-                                    <div className="flex items-center justify-between text-xs py-2 border-b border-metagray-800">
-                                        <span className="text-metagray-400 uppercase tracking-wider">College</span>
-                                        <span className="text-white font-bold">MESCE, Kuttippuram</span>
-                                    </div>
-                                    <div className="flex items-center justify-between text-xs py-2 border-b border-metagray-800">
-                                        <span className="text-metagray-400 uppercase tracking-wider">Academic Grade</span>
-                                        <span className="text-primary font-bold">8.22 CGPA (First Class with Distinction)</span>
-                                    </div>
-                                    <div className="flex items-center justify-between text-xs py-2">
-                                        <span className="text-metagray-400 uppercase tracking-wider">Location</span>
-                                        <span className="text-white font-bold">Ponnani, Kerala, India</span>
-                                    </div>
-                                </div>
-
-                                <div className="mt-5 pt-4 border-t border-metagray-800">
-                                    <a
-                                        href="#contact"
-                                        className="btn btn-outline w-full text-xs py-2.5 flex items-center justify-center gap-2"
-                                    >
-                                        <CheckCircle size={14} className="text-primary" />
-                                        <span>Initiate Collaboration</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </motion.div>
-                </div>
+                        ))}
+                    </dl>
+                    <a href="#contact" className="btn-ink mt-8">
+                        Start a conversation <ArrowRight size={15} />
+                    </a>
+                </Reveal>
             </div>
-        </section>
-    );
-};
+        </div>
+    </Section>
+);

@@ -2,78 +2,132 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Design tokens — warm paper by day, ink by night, Senin red as the single accent. */
+:root {
+  --paper: 250 249 245;
+  --ink: 12 12 12;
+  --body: 47 47 47;
+  --muted: 112 112 108;
+  --faint: 160 159 153;
+  --line: 228 226 219;
+  --card: 255 255 255;
+  --sunk: 242 240 234;
+  --accent: 214 31 31;
+  --kraft: 201 164 112;
+  color-scheme: light;
+}
+
+:root.dark {
+  --paper: 14 15 17;
+  --ink: 242 241 236;
+  --body: 211 211 206;
+  --muted: 146 146 140;
+  --faint: 98 98 95;
+  --line: 40 41 45;
+  --card: 23 24 27;
+  --sunk: 19 20 23;
+  --accent: 240 58 58;
+  --kraft: 128 98 62;
+  color-scheme: dark;
+}
+
 @layer base {
   html {
-    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
   }
   body {
-    @apply bg-background text-metagray-100 font-sans antialiased selection:bg-primary selection:text-white;
-    background-color: #0a0a0a;
+    @apply bg-paper text-body font-sans antialiased;
+    font-size: 17px;
+    line-height: 1.6;
+    letter-spacing: 0.005em;
+    transition: background-color 0.4s ease, color 0.4s ease;
   }
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-display tracking-tight text-white;
+  ::selection {
+    background: rgb(var(--accent) / 0.18);
+    color: rgb(var(--ink));
+  }
+  h1, h2, h3, h4 {
+    @apply text-ink;
+  }
+  :focus-visible {
+    outline: 2px solid rgb(var(--accent));
+    outline-offset: 3px;
+    border-radius: 4px;
   }
 }
 
 @layer components {
-  /* MetaDesign Signature Buttons */
-  .btn {
-    @apply inline-flex items-center justify-center px-6 py-3 text-sm font-semibold tracking-wider uppercase transition-all duration-300 rounded-sm cursor-pointer;
-  }
-  .btn-primary {
-    @apply bg-primary text-white hover:bg-primary-hover shadow-lg hover:shadow-primary/30 active:scale-[0.98];
-  }
-  .btn-outline {
-    @apply bg-transparent text-white border border-metagray-700 hover:border-primary hover:text-white hover:bg-primary/10 active:scale-[0.98];
-  }
-  .btn-outline-white {
-    @apply bg-transparent text-white border-2 border-white hover:bg-white hover:text-black active:scale-[0.98];
-  }
-  
-  /* MetaDesign Card Framing */
-  .meta-card {
-    @apply bg-surface border border-metagray-800 transition-all duration-300 hover:border-metagray-700 relative;
-  }
-  
-  /* MetaDesign Section Heading Accent */
-  .meta-heading {
-    @apply relative text-xs font-bold uppercase tracking-widest text-primary mb-3 flex items-center gap-2;
-  }
-  .meta-heading::before {
-    content: "";
-    @apply inline-block w-6 h-[2px] bg-primary;
+  /* Inline text link with a soft underline that firms up on hover */
+  .link {
+    @apply text-ink underline decoration-line decoration-1 underline-offset-[5px] transition-colors duration-200 hover:decoration-accent;
   }
 
-  /* Architectural Divider */
-  .meta-divider {
-    @apply w-full h-[1px] bg-gradient-to-r from-transparent via-metagray-800 to-transparent;
+  /* Small inline "chip" used inside prose for tech names */
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-md border border-line bg-card px-1.5 py-[1px] align-baseline text-[0.85em] font-medium text-ink;
+  }
+
+  /* Mono eyebrow label */
+  .label {
+    @apply font-mono text-[11px] uppercase tracking-[0.14em] text-muted;
+  }
+
+  /* Paper surface */
+  .paper {
+    @apply rounded-[3px] border border-line bg-card shadow-paper;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 active:scale-[0.97];
+  }
+  .btn-ink {
+    @apply btn bg-ink text-paper hover:bg-accent hover:text-white;
+  }
+  .btn-ghost {
+    @apply btn border border-line bg-card text-ink hover:border-ink/40;
   }
 }
 
-/* Custom Scrollbar */
+/* Faint dotted paper texture */
+.bg-dots {
+  background-image: radial-gradient(rgb(var(--ink) / 0.07) 1px, transparent 1px);
+  background-size: 14px 14px;
+}
+
+/* Deckled edge for the hero portrait */
+.deckle {
+  -webkit-mask-image: radial-gradient(ellipse 72% 72% at 50% 50%, #000 62%, transparent 100%);
+  mask-image: radial-gradient(ellipse 72% 72% at 50% 50%, #000 62%, transparent 100%);
+}
+
+/* Hide scrollbars on horizontal rails while keeping them scrollable */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #0a0a0a;
+  background: rgb(var(--paper));
 }
 ::-webkit-scrollbar-thumb {
-  background: #27272a;
-  border-radius: 4px;
+  background: rgb(var(--line));
+  border: 3px solid rgb(var(--paper));
+  border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #e70e0e;
+  background: rgb(var(--faint));
 }
 
-/* MetaDesign Subtle Grid Background */
-.bg-meta-grid {
-  background-size: 40px 40px;
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-}
-
-.bg-radial-gradient {
-  background: radial-gradient(circle at 50% 0%, rgba(231, 14, 14, 0.12) 0%, transparent 60%);
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

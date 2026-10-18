@@ -1,246 +1,175 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { 
-    Mail, 
-    Github, 
-    Linkedin, 
-    Instagram, 
-    MapPin, 
-    Copy, 
-    Check, 
-    Send, 
-    ArrowUpRight,
-    MessageSquare
-} from 'lucide-react';
+import { ArrowUpRight, Check, Copy, Github, Instagram, Linkedin, MapPin, Send } from 'lucide-react';
+import { Section } from '../ui/Section';
+import { Reveal } from '../ui/Reveal';
+import { Barcode } from '../ui/Barcode';
+
+const EMAIL = 'seninashraf765@gmail.com';
+
+const socials = [
+    { href: 'https://github.com/SeninAshraf', icon: Github, label: 'GitHub', handle: '@SeninAshraf' },
+    { href: 'https://www.linkedin.com/in/senin-ashraf-96a29b252', icon: Linkedin, label: 'LinkedIn', handle: 'Senin Ashraf' },
+    { href: 'https://www.instagram.com/_senin___', icon: Instagram, label: 'Instagram', handle: '@_senin___' },
+];
+
+const cardMotion = (rotate: number, delay: number) => ({
+    initial: { opacity: 0, y: 30, rotate: 0 },
+    whileInView: { opacity: 1, y: 0, rotate },
+    whileHover: { y: -8, rotate: 0, scale: 1.02 },
+    viewport: { once: true, margin: '0px 0px -10% 0px' },
+    transition: { type: 'spring' as const, stiffness: 200, damping: 18, delay },
+});
 
 export const Contact = () => {
     const [copied, setCopied] = useState(false);
     const [formState, setFormState] = useState({ name: '', email: '', message: '' });
 
-    const handleCopy = () => {
-        navigator.clipboard.writeText('seninashraf765@gmail.com');
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2500);
+    const handleCopy = async () => {
+        try {
+            await navigator.clipboard.writeText(EMAIL);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2500);
+        } catch {
+            window.location.href = `mailto:${EMAIL}`;
+        }
     };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         const subject = encodeURIComponent(`Collaboration Inquiry from ${formState.name}`);
         const body = encodeURIComponent(`From: ${formState.name} (${formState.email})\n\nMessage:\n${formState.message}`);
-        window.location.href = `mailto:seninashraf765@gmail.com?subject=${subject}&body=${body}`;
+        window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
     };
 
+    const field =
+        'w-full rounded-md border border-line bg-paper px-3.5 py-2.5 text-[15px] text-ink placeholder:text-faint transition-colors focus:border-ink/50 focus:outline-none';
+
     return (
-        <section id="contact" className="py-24 px-4 sm:px-6 bg-surface relative overflow-hidden">
-            {/* MetaDesign Ambient Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[160px] pointer-events-none" />
+        <Section
+            id="contact"
+            index="08"
+            label="Contact"
+            title="Building something?"
+            emphasis="Let's talk"
+            intro="Hiring an AI & data science engineer, planning a hackathon collaboration, or exploring computer vision research — my inbox is always open."
+        >
+            {/* Desk of cards */}
+            <div className="mx-auto mb-20 flex max-w-wide flex-wrap items-center justify-center gap-8">
+                <motion.a href={`mailto:${EMAIL}`} {...cardMotion(-6, 0)} className="block w-60 overflow-hidden rounded-xl bg-accent text-white shadow-lift" aria-label={`Email ${EMAIL}`}>
+                    <div className="px-5 pb-2 pt-4 text-center">
+                        <div className="font-serif text-4xl leading-none">Hello</div>
+                        <div className="font-mono text-[10px] uppercase tracking-[0.2em] opacity-80">my name is</div>
+                    </div>
+                    <div className="mx-3 mb-3 rounded-md bg-white py-4 text-center font-serif text-5xl italic text-ink" style={{ color: '#0c0c0c' }}>
+                        Senin
+                    </div>
+                    <div className="pb-3 text-center font-mono text-[10px] uppercase tracking-[0.16em] opacity-90">Tap to say hi</div>
+                </motion.a>
 
-            <div className="max-w-7xl mx-auto relative">
-                {/* MetaDesign Section Header */}
-                <div className="meta-heading">
-                    <span>GET IN TOUCH // INITIATE DIALOGUE</span>
-                </div>
-
-                <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-                    {/* Left: Direct Information & Social Links */}
-                    <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="lg:col-span-5 space-y-8"
+                <motion.div {...cardMotion(3, 0.08)} className="w-64 rounded-[4px] border border-line bg-card p-5 text-ink shadow-lift">
+                    <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-accent">Direct line</p>
+                    <a href={`mailto:${EMAIL}`} className="mt-2 block break-all text-[15px] font-medium hover:text-accent">
+                        {EMAIL}
+                    </a>
+                    <button
+                        type="button"
+                        onClick={handleCopy}
+                        className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-line px-3 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-muted transition-colors hover:border-ink/40 hover:text-ink"
+                        aria-live="polite"
                     >
-                        <div>
-                            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold uppercase tracking-tight text-white leading-tight mb-4">
-                                Let's Build <br />
-                                <span className="text-primary">Something Enduring</span> Together.
-                            </h2>
-                            <p className="text-metagray-300 text-base leading-relaxed font-light">
-                                Whether you're seeking an AI & Data Science engineer for your team, planning a hackathon collaboration, or interested in computer vision research — my inbox is always open.
-                            </p>
-                        </div>
+                        {copied ? <Check size={12} className="text-emerald-500" /> : <Copy size={12} />}
+                        {copied ? 'Copied' : 'Copy address'}
+                    </button>
+                    <p className="mt-4 flex items-center gap-1.5 border-t border-dashed border-line pt-3 font-mono text-[10px] uppercase tracking-[0.1em] text-faint">
+                        <MapPin size={11} /> Ponnani, Kerala · UTC+05:30
+                    </p>
+                </motion.div>
 
-                        {/* Direct Email Card with One-Click Copy */}
-                        <div className="p-6 bg-surface-card border border-metagray-800 space-y-4">
-                            <div className="text-xs font-mono uppercase tracking-wider text-metagray-400">
-                                Primary Communications
-                            </div>
-
-                            <div className="flex items-center justify-between p-3 bg-black/60 border border-metagray-800">
-                                <div className="flex items-center gap-2.5 truncate">
-                                    <Mail size={16} className="text-primary shrink-0" />
-                                    <a
-                                        href="mailto:seninashraf765@gmail.com"
-                                        className="text-white hover:text-primary font-mono text-sm sm:text-base font-semibold transition-colors truncate"
-                                    >
-                                        seninashraf765@gmail.com
-                                    </a>
-                                </div>
-
-                                <button
-                                    type="button"
-                                    onClick={handleCopy}
-                                    className="ml-3 p-2 bg-surface hover:bg-metagray-800 text-metagray-300 hover:text-white transition-colors rounded-sm flex items-center gap-1.5 text-xs font-mono"
-                                    title="Copy email to clipboard"
-                                >
-                                    {copied ? (
-                                        <>
-                                            <Check size={14} className="text-emerald-400" />
-                                            <span className="text-emerald-400">Copied</span>
-                                        </>
-                                    ) : (
-                                        <>
-                                            <Copy size={14} />
-                                            <span>Copy</span>
-                                        </>
-                                    )}
-                                </button>
-                            </div>
-
-                            <div className="flex items-center gap-2 text-xs font-mono text-metagray-400 pt-1">
-                                <MapPin size={13} className="text-primary" />
-                                <span>Ponnani, Malappuram, Kerala, India (UTC+05:30)</span>
-                            </div>
-                        </div>
-
-                        {/* MetaDesign Signature Circular Social Icons */}
-                        <div>
-                            <div className="text-xs font-mono uppercase tracking-wider text-metagray-400 mb-3">
-                                Connect on Verified Channels
-                            </div>
-                            <div className="flex flex-wrap items-center gap-3">
-                                <SocialButton
-                                    href="https://github.com/SeninAshraf"
-                                    icon={<Github size={18} />}
-                                    label="GitHub"
-                                    handle="@SeninAshraf"
-                                />
-                                <SocialButton
-                                    href="https://www.linkedin.com/in/senin-ashraf-96a29b252"
-                                    icon={<Linkedin size={18} />}
-                                    label="LinkedIn"
-                                    handle="Senin Ashraf"
-                                />
-                                <SocialButton
-                                    href="https://www.instagram.com/_senin___"
-                                    icon={<Instagram size={18} />}
-                                    label="Instagram"
-                                    handle="@_senin___"
-                                />
-                            </div>
-                        </div>
-                    </motion.div>
-
-                    {/* Right: Quick Direct Inquiry Form */}
-                    <motion.div
-                        initial={{ opacity: 0, x: 20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="lg:col-span-7 bg-surface-card border border-metagray-800 p-6 sm:p-8 relative"
-                    >
-                        <div className="flex items-center justify-between pb-4 mb-6 border-b border-metagray-800">
-                            <div className="flex items-center gap-2">
-                                <MessageSquare size={18} className="text-primary" />
-                                <h3 className="text-base font-bold uppercase tracking-wider text-white">
-                                    Send a Direct Message
-                                </h3>
-                            </div>
-                            <span className="text-xs font-mono text-metagray-500">Quick Response Guaranteed</span>
-                        </div>
-
-                        <form onSubmit={handleSubmit} className="space-y-4">
-                            <div className="grid sm:grid-cols-2 gap-4">
-                                <div>
-                                    <label htmlFor="name" className="block text-xs font-mono uppercase tracking-wider text-metagray-400 mb-2">
-                                        Your Name
-                                    </label>
-                                    <input
-                                        id="name"
-                                        type="text"
-                                        required
-                                        value={formState.name}
-                                        onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                                        placeholder="e.g. Alex Johnson"
-                                        className="w-full bg-black/60 border border-metagray-800 focus:border-primary text-white text-sm px-4 py-3 outline-none transition-colors"
-                                    />
-                                </div>
-
-                                <div>
-                                    <label htmlFor="email" className="block text-xs font-mono uppercase tracking-wider text-metagray-400 mb-2">
-                                        Email Address
-                                    </label>
-                                    <input
-                                        id="email"
-                                        type="email"
-                                        required
-                                        value={formState.email}
-                                        onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                                        placeholder="e.g. alex@example.com"
-                                        className="w-full bg-black/60 border border-metagray-800 focus:border-primary text-white text-sm px-4 py-3 outline-none transition-colors"
-                                    />
-                                </div>
-                            </div>
-
-                            <div>
-                                <label htmlFor="message" className="block text-xs font-mono uppercase tracking-wider text-metagray-400 mb-2">
-                                    Project Details / Inquiry
-                                </label>
-                                <textarea
-                                    id="message"
-                                    rows={5}
-                                    required
-                                    value={formState.message}
-                                    onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                                    placeholder="Describe your project, timeline, or idea..."
-                                    className="w-full bg-black/60 border border-metagray-800 focus:border-primary text-white text-sm px-4 py-3 outline-none transition-colors resize-none"
-                                />
-                            </div>
-
-                            <button
-                                type="submit"
-                                className="btn btn-primary w-full text-xs py-3.5 flex items-center justify-center gap-2 tracking-widest"
-                            >
-                                <Send size={14} />
-                                <span>SEND INQUIRY VIA EMAIL</span>
-                            </button>
-                        </form>
-                    </motion.div>
-                </div>
+                <motion.a
+                    href="/resume.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    {...cardMotion(-2, 0.16)}
+                    className="block w-44 rounded-[4px] bg-[#f3efe6] p-4 text-[#1a1a1a] shadow-lift"
+                >
+                    <p className="font-mono text-[10px] uppercase tracking-[0.18em] opacity-60">Admit one</p>
+                    <p className="mt-1 font-serif text-3xl leading-none">Résumé</p>
+                    <p className="mt-1 text-[12px] opacity-70">Senin Ashraf · PDF</p>
+                    <Barcode seed="resume" className="mt-4 !text-[#1a1a1a]" />
+                </motion.a>
             </div>
-        </section>
+
+            <div className="mx-auto grid max-w-wide gap-12 md:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]">
+                <Reveal>
+                    <form onSubmit={handleSubmit} className="paper space-y-4 p-6 sm:p-8">
+                        <div>
+                            <h3 className="font-serif text-3xl">Send a note</h3>
+                            <p className="text-[14px] text-muted">Opens in your email app, already filled in.</p>
+                        </div>
+                        <div className="grid gap-4 sm:grid-cols-2">
+                            <label className="block">
+                                <span className="label mb-1.5 block">Your name</span>
+                                <input
+                                    type="text"
+                                    required
+                                    autoComplete="name"
+                                    value={formState.name}
+                                    onChange={(e) => setFormState({ ...formState, name: e.target.value })}
+                                    placeholder="Alex Johnson"
+                                    className={field}
+                                />
+                            </label>
+                            <label className="block">
+                                <span className="label mb-1.5 block">Email</span>
+                                <input
+                                    type="email"
+                                    required
+                                    autoComplete="email"
+                                    value={formState.email}
+                                    onChange={(e) => setFormState({ ...formState, email: e.target.value })}
+                                    placeholder="alex@example.com"
+                                    className={field}
+                                />
+                            </label>
+                        </div>
+                        <label className="block">
+                            <span className="label mb-1.5 block">Project or idea</span>
+                            <textarea
+                                rows={5}
+                                required
+                                value={formState.message}
+                                onChange={(e) => setFormState({ ...formState, message: e.target.value })}
+                                placeholder="Tell me about your project, timeline or idea…"
+                                className={`${field} resize-none`}
+                            />
+                        </label>
+                        <button type="submit" className="btn-ink w-full sm:w-auto">
+                            <Send size={14} /> Send via email
+                        </button>
+                    </form>
+                </Reveal>
+
+                <Reveal delay={0.1}>
+                    <p className="label mb-4">Elsewhere</p>
+                    <ul className="divide-y divide-line border-y border-line">
+                        {socials.map(({ href, icon: Icon, label, handle }) => (
+                            <li key={label}>
+                                <a href={href} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-4 py-4">
+                                    <span className="grid h-10 w-10 place-items-center rounded-full border border-line text-muted transition-colors group-hover:border-accent group-hover:bg-accent group-hover:text-white">
+                                        <Icon size={16} />
+                                    </span>
+                                    <span className="flex-1">
+                                        <span className="block text-[15px] font-semibold text-ink">{label}</span>
+                                        <span className="block font-mono text-[11px] text-muted">{handle}</span>
+                                    </span>
+                                    <ArrowUpRight size={16} className="text-faint transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-ink" />
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </Reveal>
+            </div>
+        </Section>
     );
 };
-
-const SocialButton = ({
-    href,
-    icon,
-    label,
-    handle
-}: {
-    href: string;
-    icon: React.ReactNode;
-    label: string;
-    handle: string;
-}) => (
-    <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="flex items-center gap-3 p-3 bg-surface-card border border-metagray-800 hover:border-primary transition-all duration-300 group"
-        aria-label={label}
-    >
-        <div className="w-8 h-8 rounded-full border border-metagray-700 flex items-center justify-center text-metagray-300 group-hover:text-primary group-hover:border-primary transition-colors">
-            {icon}
-        </div>
-        <div>
-            <div className="text-xs font-bold text-white group-hover:text-primary transition-colors flex items-center gap-1">
-                {label}
-                <ArrowUpRight size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
-            </div>
-            <div className="text-[11px] font-mono text-metagray-500">
-                {handle}
-            </div>
-        </div>
-    </a>
-);

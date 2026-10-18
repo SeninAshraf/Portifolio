@@ -1,203 +1,153 @@
-import { motion } from 'framer-motion';
-import { Calendar, MapPin, Building2, Layers, CheckCircle2, Terminal } from 'lucide-react';
+import { useRef } from 'react';
+import { motion, useScroll, useSpring } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
+import { Section } from '../ui/Section';
+import { Reveal } from '../ui/Reveal';
 
-interface ExperienceItem {
+interface TimelineItem {
     id: string;
-    role: string;
-    company: string;
-    location: string;
-    period: string;
-    isCurrent: boolean;
+    when: [string, string];
+    kind: string;
+    current?: boolean;
+    title: string;
+    org: string;
+    link?: string;
     summary: string;
-    currentProject?: {
+    project?: {
         title: string;
         description: string;
-        architecturePoints: string[];
-        techStack: string[];
+        points: string[];
+        focus: string[];
     };
-    skills: string[];
+    stack?: string[];
 }
 
-const experiences: ExperienceItem[] = [
+const timeline: TimelineItem[] = [
     {
-        id: "metadesign-intern",
-        role: "Software Engineer Intern",
-        company: "Metadesign Software Solutions Pvt Ltd",
-        location: "Kerala, India",
-        period: "June 2026 — Present",
-        isCurrent: true,
-        summary: "Joined as Software Engineer Intern in Metadesign Software Solutions Pvt Ltd, actively engaged in end-to-end software engineering, implementing modular design patterns and production-grade architectures.",
-        currentProject: {
-            title: "Movie Booking System",
-            description: "Currently working in developing movie booking system with following structured software developing architecture:",
-            architecturePoints: [
-                "Layered architectural design separating presentation, business domain logic, and data persistence layers",
-                "Robust transactional seat reservation mechanism preventing race conditions and double-booking",
-                "Structured RESTful API contracts with standardized request validation and error-handling pipelines",
-                "Optimized database schema for cinema halls, show schedules, real-time seat matrices, and booking ledgers"
+        id: 'agentic-ai',
+        when: ['Now', ''],
+        kind: 'Learning',
+        current: true,
+        title: 'Agentic AI',
+        org: 'DeepLearning.AI · Coursera',
+        link: 'https://coursera.org/learn/dlai-agentic-ai',
+        summary: 'Building autonomous, multi-step AI agents with reflection, tool use, planning and multi-agent workflows.',
+    },
+    {
+        id: 'metadesign-intern',
+        when: ['Jun', '2026'],
+        kind: 'Internship',
+        current: true,
+        title: 'Software Engineer Intern',
+        org: 'Metadesign Software Solutions Pvt Ltd · Kerala, India',
+        summary:
+            'End-to-end software engineering on production-grade systems, applying modular design patterns and structured architecture from schema to API.',
+        project: {
+            title: 'Movie Booking System',
+            description: 'Currently building a movie booking system on a structured, layered architecture:',
+            points: [
+                'Layered design separating presentation, business-domain logic and data persistence',
+                'Transactional seat reservation that prevents race conditions and double-booking',
+                'Structured REST API contracts with standardised request validation and error handling',
+                'Optimised schema for cinema halls, show schedules, real-time seat matrices and booking ledgers',
             ],
-            techStack: ["Structured Architecture", "Backend Engineering", "Database Schema", "REST APIs", "State Management"]
+            focus: ['Structured Architecture', 'Backend Engineering', 'Database Schema', 'REST APIs', 'State Management'],
         },
-        skills: ["Software Architecture", "Clean Code", "System Design", "Relational Databases", "Full-Stack Development"]
-    }
+        stack: ['Software Architecture', 'Clean Code', 'System Design', 'Relational Databases', 'Full-Stack Development'],
+    },
+    {
+        id: 'btech',
+        when: ['2022', '2026'],
+        kind: 'Education',
+        title: 'B.Tech in AI & Data Science',
+        org: 'MES College of Engineering, Kuttippuram',
+        summary: 'Specialising in artificial intelligence, neural networks, computer vision, data analysis and software engineering.',
+    },
 ];
 
 export const Experience = () => {
+    const rail = useRef<HTMLOListElement>(null);
+    const { scrollYProgress } = useScroll({ target: rail, offset: ['start 70%', 'end 60%'] });
+    const draw = useSpring(scrollYProgress, { stiffness: 120, damping: 30 });
+
     return (
-        <section id="experience" className="py-24 px-4 sm:px-6 relative bg-background border-t border-metagray-800/80">
-            <div className="max-w-7xl mx-auto">
-                {/* MetaDesign Section Header */}
-                <div className="mb-14">
-                    <div className="meta-heading">
-                        <span>CAREER PATH // PROFESSIONAL EXPERIENCE</span>
-                    </div>
-                    <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-                        <div>
-                            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold uppercase tracking-tight text-white">
-                                Industry <span className="text-primary">Experience.</span>
-                            </h2>
-                            <p className="text-metagray-400 text-sm sm:text-base mt-2 max-w-2xl font-light">
-                                Practical software engineering experience delivering robust, maintainable systems through disciplined development practices.
-                            </p>
-                        </div>
-                        <div className="flex items-center gap-2 self-start md:self-auto text-xs font-mono text-metagray-400 bg-surface-card border border-metagray-800 px-3 py-1.5 rounded-sm">
-                            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                            <span>CURRENTLY ACTIVE INTERNSHIP</span>
-                        </div>
-                    </div>
-                </div>
+        <Section id="experience" index="02" label="Experience" title="Where I've" emphasis="worked" tail="& learned">
+            <div className="mx-auto max-w-[44rem]">
+                <p className="label mb-8 flex items-center gap-2 pl-[5.5rem] text-accent sm:pl-[7rem]">
+                    Newest first <span aria-hidden>↓</span>
+                </p>
+                <ol ref={rail} className="relative">
+                    {/* Static rail + scroll-drawn progress */}
+                    <span aria-hidden className="absolute bottom-2 left-[4.6rem] top-2 w-px bg-line sm:left-[6.1rem]" />
+                    <motion.span
+                        aria-hidden
+                        style={{ scaleY: draw }}
+                        className="absolute bottom-2 left-[4.6rem] top-2 w-px origin-top bg-accent sm:left-[6.1rem]"
+                    />
 
-                {/* Timeline Container */}
-                <div className="relative pl-4 sm:pl-8 lg:pl-10">
-                    {/* Vertical Timeline Guide Line */}
-                    <div className="absolute left-2 sm:left-4 lg:left-5 top-3 bottom-3 w-[2px] bg-gradient-to-b from-primary via-metagray-800 to-transparent" />
+                    {timeline.map((item) => (
+                        <li key={item.id} className="relative grid grid-cols-[4rem_1fr] gap-x-6 pb-14 last:pb-0 sm:grid-cols-[5.5rem_1fr] sm:gap-x-8">
+                            <div className="pt-1 text-right font-mono text-[11px] uppercase leading-tight tracking-[0.12em] text-muted">
+                                <div className={item.current ? 'text-accent' : ''}>{item.when[0]}</div>
+                                {item.when[1] && <div>{item.when[1]}</div>}
+                            </div>
 
-                    <div className="space-y-12">
-                        {experiences.map((exp, index) => (
-                            <motion.div
-                                key={exp.id}
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: index * 0.1 }}
-                                className="relative group"
-                            >
-                                {/* Timeline Node / Dot */}
-                                <div className="absolute -left-6 sm:-left-8 lg:-left-9 top-1.5 w-6 h-6 rounded-full bg-surface-card border-2 border-primary flex items-center justify-center text-primary shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform">
-                                    <div className="w-2 h-2 rounded-full bg-primary" />
+                            <span
+                                aria-hidden
+                                className={`absolute left-[4.6rem] top-[0.45rem] h-2.5 w-2.5 -translate-x-1/2 rounded-full border-2 sm:left-[6.1rem] ${
+                                    item.current ? 'border-accent bg-accent shadow-[0_0_0_4px_rgb(var(--accent)/0.15)]' : 'border-faint bg-paper'
+                                }`}
+                            />
+
+                            <Reveal>
+                                <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                                    <h3 className="text-[19px] font-semibold tracking-tight">
+                                        {item.link ? (
+                                            <a href={item.link} target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-1 hover:text-accent">
+                                                {item.title}
+                                                <ArrowUpRight size={15} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                                            </a>
+                                        ) : (
+                                            item.title
+                                        )}
+                                    </h3>
+                                    <span className="label">{item.kind}</span>
+                                    {item.current && <span className="label text-accent">Current</span>}
                                 </div>
+                                <p className="mt-0.5 text-[15px] text-muted">{item.org}</p>
+                                <p className="mt-3 text-[16px] leading-relaxed">{item.summary}</p>
 
-                                {/* Main Experience Card */}
-                                <div className="meta-card p-6 sm:p-8 bg-surface-card border border-metagray-800 hover:border-metagray-700 transition-all duration-300 shadow-2xl relative">
-                                    {/* Header Row */}
-                                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-5 border-b border-metagray-800">
-                                        <div>
-                                            <div className="flex items-center gap-2 flex-wrap mb-1">
-                                                <h3 className="text-xl sm:text-2xl font-display font-bold text-white tracking-wide">
-                                                    {exp.role}
-                                                </h3>
-                                                {exp.isCurrent && (
-                                                    <span className="text-[10px] uppercase font-mono font-bold tracking-wider px-2 py-0.5 rounded-sm bg-emerald-950/70 text-emerald-400 border border-emerald-800/60 flex items-center gap-1.5">
-                                                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                                                        Current Role
-                                                    </span>
-                                                )}
-                                            </div>
-
-                                            <div className="flex items-center gap-3 text-sm text-metagray-300 font-medium">
-                                                <span className="text-primary font-semibold flex items-center gap-1.5">
-                                                    <Building2 size={15} />
-                                                    {exp.company}
-                                                </span>
-                                                <span className="text-metagray-600">•</span>
-                                                <span className="text-metagray-400 flex items-center gap-1 text-xs">
-                                                    <MapPin size={13} />
-                                                    {exp.location}
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                        <div className="flex items-center gap-2 text-xs font-mono text-metagray-400 bg-black/40 border border-metagray-800/80 px-3 py-1.5 rounded-sm self-start md:self-auto">
-                                            <Calendar size={13} className="text-primary" />
-                                            <span>{exp.period}</span>
-                                        </div>
+                                {item.project && (
+                                    <div className="paper mt-5 p-5">
+                                        <p className="label mb-2">
+                                            Active project <span className="text-faint">/</span> <span className="text-ink">{item.project.title}</span>
+                                        </p>
+                                        <p className="text-[15px] text-muted">{item.project.description}</p>
+                                        <ul className="mt-3 space-y-1.5 text-[15px]">
+                                            {item.project.points.map((p) => (
+                                                <li key={p} className="flex gap-3">
+                                                    <span className="text-faint">—</span>
+                                                    <span>{p}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                        <p className="mt-4 font-mono text-[11px] leading-relaxed tracking-wide text-muted">
+                                            <span className="uppercase text-faint">Focus · </span>
+                                            {item.project.focus.join(' · ')}
+                                        </p>
                                     </div>
+                                )}
 
-                                    {/* Summary Paragraph */}
-                                    <p className="mt-5 text-sm sm:text-base text-metagray-300 leading-relaxed font-light">
-                                        {exp.summary}
+                                {item.stack && (
+                                    <p className="mt-4 text-[14px] text-muted">
+                                        {item.stack.join(', ')}
                                     </p>
-
-                                    {/* Currently Working Project with Less Opacity as Requested */}
-                                    {exp.currentProject && (
-                                        <div className="mt-6 p-5 sm:p-6 bg-black/40 border border-metagray-800/80 rounded-sm opacity-80 hover:opacity-100 transition-opacity duration-300 relative group/project">
-                                            <div className="flex items-center justify-between pb-3 mb-3 border-b border-metagray-800/80">
-                                                <div className="flex items-center gap-2">
-                                                    <Terminal size={15} className="text-primary" />
-                                                    <span className="text-xs font-mono uppercase tracking-wider text-white font-semibold">
-                                                        Active Project // {exp.currentProject.title}
-                                                    </span>
-                                                </div>
-                                                <span className="text-[10px] font-mono uppercase tracking-widest text-metagray-400 bg-metagray-900 border border-metagray-800 px-2 py-0.5 rounded-sm">
-                                                    Structured Architecture
-                                                </span>
-                                            </div>
-
-                                            <p className="text-xs sm:text-sm text-metagray-300 mb-4 font-light leading-relaxed">
-                                                {exp.currentProject.description}
-                                            </p>
-
-                                            {/* Architectural Breakdown Points */}
-                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
-                                                {exp.currentProject.architecturePoints.map((point, i) => (
-                                                    <div
-                                                        key={i}
-                                                        className="flex items-start gap-2.5 text-xs text-metagray-400 leading-relaxed bg-surface/50 border border-metagray-800/50 p-2.5 rounded-sm"
-                                                    >
-                                                        <CheckCircle2 size={14} className="text-primary shrink-0 mt-0.5" />
-                                                        <span>{point}</span>
-                                                    </div>
-                                                ))}
-                                            </div>
-
-                                            {/* Project Tech Stack */}
-                                            <div className="flex flex-wrap items-center gap-1.5 pt-2 border-t border-metagray-800/50">
-                                                <span className="text-[11px] font-mono text-metagray-400 uppercase tracking-wider mr-1 flex items-center gap-1">
-                                                    <Layers size={12} className="text-primary" />
-                                                    Focus:
-                                                </span>
-                                                {exp.currentProject.techStack.map((tech) => (
-                                                    <span
-                                                        key={tech}
-                                                        className="text-[11px] font-mono text-metagray-400 bg-metagray-900/80 border border-metagray-800 px-2 py-0.5 rounded-sm"
-                                                    >
-                                                        {tech}
-                                                    </span>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    )}
-
-                                    {/* Skills / Focus Strip */}
-                                    <div className="mt-6 pt-4 border-t border-metagray-800/80 flex flex-wrap items-center gap-2">
-                                        <span className="text-xs font-mono uppercase tracking-wider text-metagray-400 mr-2">
-                                            Domain Core:
-                                        </span>
-                                        {exp.skills.map((skill) => (
-                                            <span
-                                                key={skill}
-                                                className="text-xs font-mono text-metagray-300 bg-surface border border-metagray-800 px-2.5 py-1 rounded-sm hover:border-primary/40 transition-colors"
-                                            >
-                                                {skill}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
+                                )}
+                            </Reveal>
+                        </li>
+                    ))}
+                </ol>
             </div>
-        </section>
+        </Section>
     );
 };

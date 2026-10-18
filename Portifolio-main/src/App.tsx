@@ -4,7 +4,6 @@ import { Hero } from './components/sections/Hero';
 import { About } from './components/sections/About';
 import { Experience } from './components/sections/Experience';
 import { Work } from './components/sections/Work';
-import { GithubActivity } from './components/sections/GithubActivity';
 import { Achievements } from './components/sections/Achievements';
 import { Programs } from './components/sections/Programs';
 import { Skills } from './components/sections/Skills';
@@ -15,14 +14,19 @@ import { LenisWrapper } from './components/layout/LenisWrapper';
 function App() {
   return (
     <LenisWrapper>
-      <div className="min-h-screen bg-background text-white selection:bg-primary selection:text-white font-sans antialiased overflow-x-hidden">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-paper"
+      >
+        Skip to content
+      </a>
+      <div className="min-h-screen overflow-x-clip">
         <Navbar />
-        <main>
+        <main id="main">
           <Hero />
           <About />
           <Experience />
           <Work />
-          <GithubActivity />
           <Achievements />
           <Programs />
           <Skills />
@@ -31,6 +35,8 @@ function App() {
         </main>
         <Footer />
       </div>
+      {/* Soft fade where content meets the bottom edge, as in a printed page */}
+      <div aria-hidden className="pointer-events-none fixed inset-x-0 bottom-0 z-40 h-16 bg-gradient-to-t from-paper to-transparent" />
     </LenisWrapper>
   );
 }

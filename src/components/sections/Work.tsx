@@ -1,74 +1,88 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Code2, Github, ArrowRight, Layers } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ArrowUpRight } from 'lucide-react';
 import { GithubRepoCard, type GithubRepoCardProps } from '../ui/GithubRepoCard';
+import { Section } from '../ui/Section';
+import { Reveal } from '../ui/Reveal';
 
 const projects: GithubRepoCardProps[] = [
     {
         name: "Mentora",
-        description: "Intelligent AI Faculty Advisor bridging communication between educational institutions and parents. 24/7 accessible bilingual assistant conversing fluently in Malayalam and English with custom institution logic.",
+        tagline: "An AI faculty advisor parents can talk to, any hour",
+        description: "Bridges communication between educational institutions and parents: a 24/7 bilingual assistant that converses fluently in Malayalam and English, driven by custom institution logic.",
         language: "Python",
         languageColor: "#3572a5",
         category: "AI & NLP",
         tags: ["FastAPI", "Bilingual NLP", "Speech AI", "RAG"],
         stars: 3,
         forks: 1,
-        url: "https://github.com/SeninAshraf/Mentora"
+        url: "https://github.com/SeninAshraf/Mentora",
+        art: "chat",
     },
     {
         name: "Automated-Attendance-System",
-        description: "AI-powered biometric attendance system utilizing OpenCV, LBPH facial recognition algorithms and YOLO object detection for student ID cards. Real-time authentication and database synchronization.",
+        tagline: "Attendance that recognises faces and ID cards",
+        description: "AI-powered biometric attendance using OpenCV with LBPH facial recognition and YOLO detection of student ID cards — real-time authentication with database sync.",
         language: "Python",
         languageColor: "#3572a5",
         category: "Computer Vision",
         tags: ["OpenCV", "LBPH", "YOLO", "Biometrics"],
         stars: 4,
         forks: 2,
-        url: "https://github.com/SeninAshraf/Automated-Attendance-System"
+        url: "https://github.com/SeninAshraf/Automated-Attendance-System",
+        art: "eye",
     },
     {
         name: "GUIDANCE",
-        description: "AI Career Companion platform designed to empower students and tech job seekers with intelligent career roadmap generation, interview simulations, and AI-driven resume enhancement.",
+        tagline: "An AI career companion for students and job seekers",
+        description: "Generates personalised career roadmaps, runs interview simulations and enhances résumés with AI — built to empower students and tech job seekers.",
         language: "JavaScript",
         languageColor: "#f1e05a",
         category: "Career Tech",
         tags: ["React", "AI Agent", "TailwindCSS", "Node.js"],
         stars: 2,
         forks: 0,
-        url: "https://github.com/SeninAshraf/GUIDANCE"
+        url: "https://github.com/SeninAshraf/GUIDANCE",
+        art: "path",
     },
     {
         name: "Meeting-Analyst",
-        description: "Speech-to-text intelligence tool & Chrome extension designed to record, transcribe, summarize, and extract key action items from Google Meet and Zoom video conferences.",
+        tagline: "Meetings, transcribed and boiled down to actions",
+        description: "Speech-to-text tool and Chrome extension that records, transcribes and summarises Google Meet and Zoom calls, extracting the key action items.",
         language: "JavaScript",
         languageColor: "#f1e05a",
         category: "AI & Productivity",
         tags: ["Chrome Ext", "Speech-to-Text", "Summarization"],
         stars: 2,
         forks: 0,
-        url: "https://github.com/SeninAshraf/Meeting-Analyst"
+        url: "https://github.com/SeninAshraf/Meeting-Analyst",
+        art: "wave",
     },
     {
         name: "Booking_System",
-        description: "Robust reservation and booking management system built with Python, featuring relational database schema, user authentication, availability calendar, and automated booking notifications.",
+        tagline: "Reservations with a schema that holds up",
+        description: "Reservation and booking management in Python with a relational schema, user authentication, an availability calendar and automated booking notifications.",
         language: "Python",
         languageColor: "#3572a5",
         category: "Web & Systems",
         tags: ["Python", "Database", "Backend Architecture", "APIs"],
         stars: 1,
         forks: 0,
-        url: "https://github.com/SeninAshraf/booking_system"
+        url: "https://github.com/SeninAshraf/booking_system",
+        art: "calendar",
     },
     {
         name: "GenArchAI",
-        description: "Generative AI architecture design explorer assisting engineers in structuring cloud solutions, evaluating tradeoffs, and drafting software blueprint diagrams.",
+        tagline: "Generative AI for sketching system blueprints",
+        description: "A design explorer that helps engineers structure cloud solutions, weigh trade-offs and draft software blueprint diagrams with generative AI.",
         language: "JavaScript",
         languageColor: "#f1e05a",
         category: "AI & Systems",
         tags: ["Generative AI", "Architecture", "Design Patterns"],
         stars: 1,
         forks: 0,
-        url: "https://github.com/SeninAshraf/GenArchAI"
+        url: "https://github.com/SeninAshraf/GenArchAI",
+        art: "nodes",
     }
 ];
 
@@ -76,100 +90,88 @@ const categories = ['All', 'AI & NLP', 'Computer Vision', 'Career Tech', 'Web & 
 
 export const Work = () => {
     const [selectedCategory, setSelectedCategory] = useState('All');
+    const rail = useRef<HTMLDivElement>(null);
 
     const filteredProjects = selectedCategory === 'All'
         ? projects
         : projects.filter(p => p.category?.toLowerCase() === selectedCategory.toLowerCase() || p.tags?.some(t => t.toLowerCase().includes(selectedCategory.toLowerCase())));
 
+    const nudge = (dir: 1 | -1) => rail.current?.scrollBy({ left: dir * 320, behavior: 'smooth' });
+
     return (
-        <section id="work" className="py-24 px-4 sm:px-6 bg-background relative overflow-hidden">
-            <div className="max-w-7xl mx-auto">
-                {/* MetaDesign Section Header */}
-                <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-                    <div>
-                        <div className="meta-heading">
-                            <span>FEATURED PROJECTS // SELECTED WORKS</span>
-                        </div>
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold uppercase tracking-tight text-white flex items-center gap-3">
-                            <Code2 className="text-primary" size={38} />
-                            Engineered Solutions
-                        </h2>
-                        <p className="text-metagray-300 max-w-2xl text-base sm:text-lg mt-3 font-light">
-                            High-impact technical projects spanning computer vision, natural language processing, and full-stack engineering.
-                        </p>
-                    </div>
-
-                    <div className="flex items-center gap-2">
-                        <span className="text-xs uppercase font-mono text-metagray-400">Total Displayed:</span>
-                        <span className="text-xs font-mono font-bold text-primary bg-primary/10 border border-primary/30 px-2 py-0.5 rounded-sm">
-                            {filteredProjects.length} Repositories
-                        </span>
-                    </div>
-                </div>
-
-                {/* Filter Tabs */}
-                <div className="flex flex-wrap items-center gap-2 mb-10 pb-4 border-b border-metagray-800">
-                    <div className="flex items-center gap-1.5 text-xs uppercase font-mono text-metagray-400 mr-2">
-                        <Layers size={14} className="text-primary" /> Filter:
-                    </div>
-                    {categories.map((cat) => (
-                        <button
-                            key={cat}
-                            type="button"
-                            onClick={() => setSelectedCategory(cat)}
-                            className={`text-xs uppercase font-bold tracking-wider px-3.5 py-1.5 transition-all duration-200 rounded-sm cursor-pointer ${
-                                selectedCategory === cat
-                                    ? 'bg-primary text-white shadow-sm'
-                                    : 'bg-surface border border-metagray-800 text-metagray-400 hover:text-white hover:border-metagray-700'
-                            }`}
-                        >
-                            {cat}
-                        </button>
-                    ))}
-                </div>
-
-                {/* Project Grid */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-14">
-                    <AnimatePresence mode="popLayout">
-                        {filteredProjects.map((project, index) => (
-                            <motion.div
-                                key={project.name}
-                                layout
-                                initial={{ opacity: 0, scale: 0.95 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 0, scale: 0.95 }}
-                                transition={{ duration: 0.3, delay: index * 0.05 }}
-                                className="h-full"
-                            >
-                                <GithubRepoCard {...project} />
-                            </motion.div>
-                        ))}
-                    </AnimatePresence>
-                </div>
-
-                {/* Bottom Callout */}
-                <div className="p-8 bg-surface border border-metagray-800 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
-                    <div>
-                        <h4 className="text-white text-lg font-bold uppercase tracking-wide mb-1">
-                            Want to inspect all 33+ repositories & experiments?
-                        </h4>
-                        <p className="text-metagray-400 text-sm font-light">
-                            Explore full commit history, branches, test suites, and open issues on GitHub.
-                        </p>
-                    </div>
-
-                    <a
-                        href="https://github.com/SeninAshraf?tab=repositories"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn btn-primary group whitespace-nowrap text-xs py-3 px-6"
+        <Section
+            id="work"
+            index="03"
+            label="Projects"
+            title="Things I've"
+            emphasis="built"
+            intro="Computer vision, natural language and full-stack engineering — each one open source on GitHub."
+        >
+            <Reveal className="mx-auto mb-10 flex max-w-wide flex-wrap justify-center gap-1.5" y={10}>
+                {categories.map((cat) => (
+                    <button
+                        key={cat}
+                        type="button"
+                        onClick={() => {
+                            setSelectedCategory(cat);
+                            rail.current?.scrollTo({ left: 0, behavior: 'smooth' });
+                        }}
+                        aria-pressed={selectedCategory === cat}
+                        className={`relative rounded-full px-3.5 py-1.5 font-mono text-[11px] uppercase tracking-[0.12em] transition-colors ${
+                            selectedCategory === cat ? 'text-paper' : 'text-muted hover:text-ink'
+                        }`}
                     >
-                        <Github size={16} className="mr-2" />
-                        <span>Visit GitHub Profile</span>
-                        <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
-                    </a>
-                </div>
+                        {selectedCategory === cat && (
+                            <motion.span layoutId="work-filter" className="absolute inset-0 rounded-full bg-ink" transition={{ type: 'spring', stiffness: 400, damping: 32 }} />
+                        )}
+                        <span className="relative">{cat}</span>
+                    </button>
+                ))}
+            </Reveal>
+
+            {/* Card rail: bleeds to the viewport edges, snaps card by card */}
+            <div
+                ref={rail}
+                className="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-8 overflow-x-auto px-[max(1rem,calc((100vw_-_60rem)/2))] scroll-px-[max(1rem,calc((100vw_-_60rem)/2))] pb-10 pt-6 sm:-mx-6"
+                aria-label="Projects"
+            >
+                <AnimatePresence mode="popLayout">
+                    {filteredProjects.map((project, index) => (
+                        <motion.div
+                            key={project.name}
+                            layout
+                            initial={{ opacity: 0, y: 24 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.95 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
+                            className="shrink-0 snap-center sm:snap-start"
+                        >
+                            <GithubRepoCard {...project} index={projects.indexOf(project)} />
+                        </motion.div>
+                    ))}
+                </AnimatePresence>
             </div>
-        </section>
+
+            <div className="mx-auto flex max-w-wide flex-wrap items-center justify-between gap-6">
+                <div className="flex gap-2">
+                    <button type="button" onClick={() => nudge(-1)} className="btn-ghost h-10 w-10 !p-0" aria-label="Previous projects">
+                        <ArrowLeft size={16} />
+                    </button>
+                    <button type="button" onClick={() => nudge(1)} className="btn-ghost h-10 w-10 !p-0" aria-label="Next projects">
+                        <ArrowRight size={16} />
+                    </button>
+                </div>
+                <a
+                    href="https://github.com/SeninAshraf?tab=repositories"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex items-center gap-1 text-[15px] text-muted hover:text-ink"
+                >
+                    Browse all <span className="text-ink">33+ repositories</span> on GitHub
+                    <ArrowUpRight size={15} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                </a>
+            </div>
+        </Section>
     );
 };

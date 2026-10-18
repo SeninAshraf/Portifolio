@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const token = (name) => `rgb(var(--${name}) / <alpha-value>)`;
+
 export default {
     content: [
         "./index.html",
@@ -8,46 +10,31 @@ export default {
     theme: {
         extend: {
             colors: {
-                background: '#0a0a0a',
-                surface: '#121212',
-                'surface-card': '#161616',
-                'surface-hover': '#1e1e1e',
-                'surface-border': '#27272a',
-                primary: {
-                    DEFAULT: '#e70e0e',
-                    hover: '#cc0c0c',
-                    dark: '#9a0909',
-                    light: '#ff3b3b',
-                    glow: 'rgba(231, 14, 14, 0.25)',
-                },
-                secondary: '#9c9d9f',
-                metagray: {
-                    50: '#fafafa',
-                    100: '#ebebeb',
-                    200: '#d4d4d8',
-                    300: '#b1aeae',
-                    400: '#9c9d9f',
-                    500: '#6e6e6e',
-                    600: '#5f5f5f',
-                    700: '#333333',
-                    800: '#1d1d1d',
-                    900: '#131313',
-                }
+                paper: token('paper'),
+                ink: token('ink'),
+                body: token('body'),
+                muted: token('muted'),
+                faint: token('faint'),
+                line: token('line'),
+                card: token('card'),
+                sunk: token('sunk'),
+                accent: token('accent'),
+                kraft: token('kraft'),
             },
             fontFamily: {
-                sans: ['Mulish', 'Inter', 'sans-serif'],
-                display: ['Space Grotesk', 'Mulish', 'sans-serif'],
-                quote: ['Lato', 'serif'],
+                sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+                serif: ['"Instrument Serif"', 'ui-serif', 'Georgia', 'serif'],
+                mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
             },
             boxShadow: {
-                'meta': '0 0 25px -5px rgba(231, 14, 14, 0.2)',
-                'meta-card': '0 10px 30px -10px rgba(0, 0, 0, 0.7)',
-                'meta-hover': '0 15px 35px -5px rgba(231, 14, 14, 0.15)',
+                paper: '0 1px 2px rgb(0 0 0 / 0.04), 0 8px 24px -8px rgb(0 0 0 / 0.12)',
+                lift: '0 2px 4px rgb(0 0 0 / 0.05), 0 24px 48px -16px rgb(0 0 0 / 0.22)',
+                dock: '0 1px 1px rgb(0 0 0 / 0.04), 0 8px 28px -6px rgb(0 0 0 / 0.18)',
             },
-            borderRadius: {
-                'meta': '4px',
-                '3xl': '1.5rem',
-            }
+            maxWidth: {
+                prose: '36rem',
+                wide: '60rem',
+            },
         },
     },
     plugins: [],
