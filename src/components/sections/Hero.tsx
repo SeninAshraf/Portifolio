@@ -81,14 +81,37 @@ export const Hero = () => {
     const board = useRef<HTMLDivElement>(null);
 
     return (
-        <section id="top" className="relative px-4 pb-4 pt-12 sm:px-6 md:pt-28">
-            <div className="mx-auto max-w-prose">
+        <section id="top" className="relative px-4 pb-4 pt-12 sm:px-6 md:pt-28 lg:pt-36">
+            <div className="mx-auto max-w-prose lg:grid lg:max-w-6xl lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)] lg:items-center lg:gap-x-12 xl:gap-x-20">
                 <motion.div
                     initial={{ opacity: 0, scale: 0.96 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 1.1, ease }}
-                    className="mx-auto mb-10 w-56 sm:w-64"
+                    className="relative mx-auto mb-10 w-56 sm:w-64 lg:order-2 lg:mb-0 lg:w-full"
                 >
+                    {/* Desktop-only framing: dotted backdrop, annotations, caption */}
+                    <div aria-hidden className="bg-dots absolute -inset-10 -z-10 hidden rounded-full opacity-80 lg:block [mask-image:radial-gradient(closest-side,#000_55%,transparent)]" />
+                    <motion.span
+                        initial={{ opacity: 0, x: -12, rotate: -10 }}
+                        animate={{ opacity: 1, x: 0, rotate: -6 }}
+                        transition={{ duration: 0.8, delay: 0.9, ease }}
+                        className="absolute -left-14 top-8 z-10 hidden rounded-full border border-line bg-card px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-ink shadow-paper lg:block"
+                    >
+                        Based in Ponnani, Kerala
+                    </motion.span>
+                    <svg aria-hidden viewBox="0 0 80 60" className="absolute -left-4 top-16 hidden h-14 w-20 text-faint lg:block">
+                        <path d="M4 6 C 20 40, 46 52, 72 46" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeDasharray="3 4" />
+                        <path d="M64 40 L 73 46 L 63 52" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    <motion.span
+                        initial={{ opacity: 0, x: 12, rotate: 10 }}
+                        animate={{ opacity: 1, x: 0, rotate: 5 }}
+                        transition={{ duration: 0.8, delay: 1.05, ease }}
+                        className="absolute -right-3 bottom-20 z-10 xl:-right-8 hidden rounded-[4px] bg-accent px-3 py-2 text-white shadow-lift lg:block"
+                    >
+                        <span className="block font-mono text-[9px] uppercase tracking-[0.18em] opacity-80">B.Tech AI &amp; DS</span>
+                        <span className="block font-serif text-xl leading-tight">Class of 2026</span>
+                    </motion.span>
                     <img
                         src="/senin-hero.jpg"
                         alt="Pencil-sketch portrait of Senin Ashraf"
@@ -100,11 +123,19 @@ export const Hero = () => {
                             (e.currentTarget as HTMLImageElement).src = '/senin.jpg';
                         }}
                     />
+                    <p className="label mt-4 hidden text-center lg:block">
+                        Fig. 01 <span className="text-faint">—</span> Senin Ashraf, in pencil
+                    </p>
                 </motion.div>
 
+                <div className="lg:order-1">
+                <motion.p {...rise(0.1)} className="label mb-6 hidden items-center gap-3 lg:flex">
+                    <span className="h-px w-8 bg-accent" />
+                    AI &amp; Data Science Engineer <span className="text-faint">/</span> Kerala, India
+                </motion.p>
                 <motion.h1
                     {...rise(0.15)}
-                    className="font-serif text-[2.7rem] leading-[1.02] tracking-[-0.02em] sm:text-[3.4rem]"
+                    className="font-serif text-[2.7rem] leading-[1.02] tracking-[-0.02em] sm:text-[3.4rem] lg:text-[3.6rem] lg:leading-[0.98] xl:text-[4.1rem]"
                 >
                     Senin Ashraf, an AI &amp; data science engineer building <em className="italic text-accent">intelligence</em> from real data.
                 </motion.h1>
@@ -148,12 +179,13 @@ export const Hero = () => {
                         <Github size={15} /> GitHub
                     </a>
                 </motion.div>
+                </div>
             </div>
 
             {/* Sticker board — real milestones, free to rearrange */}
             <div
                 ref={board}
-                className="relative mx-auto mt-14 flex max-w-wide flex-wrap items-center justify-center gap-x-1 gap-y-2 sm:block sm:h-[330px]"
+                className="relative mx-auto mt-14 flex max-w-wide flex-wrap lg:mt-20 lg:max-w-6xl items-center justify-center gap-x-1 gap-y-2 sm:block sm:h-[330px]"
             >
                 <Sticker board={board} label="8.22 CGPA, first class with distinction" rotate={-8} delay={0.6} className="sm:left-[4%] sm:top-[14%]">
                     <Seal />
