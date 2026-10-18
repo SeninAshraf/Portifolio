@@ -1,33 +1,10 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, FileText, Github, Sparkles, Terminal, Award, GitBranch } from 'lucide-react';
+import { ArrowRight, FileText, Github, Sparkles, Award, GitBranch } from 'lucide-react';
 
 export const Hero = () => {
     return (
         <section className="relative pt-32 lg:pt-36 pb-20 px-4 sm:px-6 overflow-hidden bg-meta-grid bg-radial-gradient">
             <div className="max-w-7xl mx-auto">
-                {/* MetaDesign Signature Philosophy Banner */}
-                <motion.div
-                    initial={{ opacity: 0, y: -15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    className="mb-10 p-5 sm:p-6 bg-surface/90 border-l-4 border-primary border-y border-r border-metagray-800 backdrop-blur-md shadow-2xl relative"
-                >
-                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                        <div className="relative pl-2 sm:pl-4">
-                            <span className="text-4xl sm:text-5xl text-primary/30 font-serif absolute -top-4 -left-2 select-none">“</span>
-                            <p className="font-quote italic text-base sm:text-lg md:text-xl text-metagray-200 tracking-wide leading-relaxed">
-                                Perfection is achieved not when there is nothing more to add, but when there is nothing left to take away.
-                            </p>
-                            <span className="block mt-2 text-xs sm:text-sm font-bold tracking-widest text-primary uppercase">
-                                — Antoine de Saint-Exupéry <span className="text-metagray-500 font-normal">| Design Philosophy</span>
-                            </span>
-                        </div>
-                        <div className="shrink-0 flex items-center gap-2 self-start md:self-center bg-black/60 px-3 py-1.5 rounded-sm border border-metagray-800 text-xs text-metagray-300">
-                            <Terminal size={14} className="text-primary" />
-                            <span>AI & SYSTEMS ARCHITECTURE</span>
-                        </div>
-                    </div>
-                </motion.div>
 
                 {/* Main Hero Grid */}
                 <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">

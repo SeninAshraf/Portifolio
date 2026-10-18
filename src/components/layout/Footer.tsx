@@ -131,10 +131,6 @@ export const Footer = () => {
                     </div>
 
                     <div className="flex items-center gap-4">
-                        <span className="flex items-center gap-1">
-                            Designed with <span className="text-primary">MetaDesign</span> Architectural Aesthetic
-                        </span>
-
                         <button
                             type="button"
                             onClick={scrollToTop}
