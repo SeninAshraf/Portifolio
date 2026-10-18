@@ -1,37 +1,26 @@
 import { useCallback, useEffect, useState } from 'react';
 
-export type ThemePref = 'auto' | 'light' | 'dark';
+export type ThemePref = 'light' | 'dark';
 
+/** Light is the default on every device; dark only when the visitor chooses it. */
 const readPref = (): ThemePref => {
     try {
-        const v = localStorage.getItem('theme');
-        return v === 'light' || v === 'dark' ? v : 'auto';
+        return localStorage.getItem('theme') === 'dark' ? 'dark' : 'light';
     } catch {
-        return 'auto';
+        return 'light';
     }
 };
 
-const systemDark = () => window.matchMedia('(prefers-color-scheme: dark)').matches;
-
 export const useTheme = () => {
     const [pref, setPref] = useState<ThemePref>(readPref);
-    const [isDark, setIsDark] = useState(() => document.documentElement.classList.contains('dark'));
 
     useEffect(() => {
-        const apply = () => {
-            const dark = pref === 'dark' || (pref === 'auto' && systemDark());
-            document.documentElement.classList.toggle('dark', dark);
-            setIsDark(dark);
-        };
-        apply();
-        const mq = window.matchMedia('(prefers-color-scheme: dark)');
-        mq.addEventListener('change', apply);
-        return () => mq.removeEventListener('change', apply);
+        document.documentElement.classList.toggle('dark', pref === 'dark');
     }, [pref]);
 
     const choose = useCallback((next: ThemePref) => {
         try {
-            if (next === 'auto') localStorage.removeItem('theme');
+            if (next === 'light') localStorage.removeItem('theme');
             else localStorage.setItem('theme', next);
         } catch {
             // Storage unavailable (private mode) — theme still applies for this visit.
@@ -39,5 +28,5 @@ export const useTheme = () => {
         setPref(next);
     }, []);
 
-    return { pref, isDark, choose };
+    return { pref, isDark: pref === 'dark', choose };
 };

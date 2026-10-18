@@ -1,25 +1,19 @@
-import { Monitor, Moon, Sun } from 'lucide-react';
-import { useTheme, type ThemePref } from '../../hooks/useTheme';
-
-const order: ThemePref[] = ['auto', 'light', 'dark'];
-const meta: Record<ThemePref, { label: string; Icon: typeof Sun }> = {
-    auto: { label: 'Auto', Icon: Monitor },
-    light: { label: 'Day', Icon: Sun },
-    dark: { label: 'Night', Icon: Moon },
-};
+import { Moon, Sun } from 'lucide-react';
+import { useTheme } from '../../hooks/useTheme';
 
 export const ThemeToggle = () => {
-    const { pref, choose } = useTheme();
-    const next = order[(order.indexOf(pref) + 1) % order.length];
-    const { label, Icon } = meta[pref];
+    const { isDark, choose } = useTheme();
+    const label = isDark ? 'Night' : 'Day';
+    const nextLabel = isDark ? 'Day' : 'Night';
+    const Icon = isDark ? Moon : Sun;
 
     return (
         <button
             type="button"
-            onClick={() => choose(next)}
+            onClick={() => choose(isDark ? 'light' : 'dark')}
             className="group fixed right-4 top-4 z-50 flex h-10 items-center gap-2 rounded-full border border-line bg-card/80 px-3 text-muted shadow-dock backdrop-blur-md transition-colors hover:text-ink sm:right-6 sm:top-5"
-            aria-label={`Theme: ${label}. Switch to ${meta[next].label}`}
-            title={`Theme: ${label} — click for ${meta[next].label}`}
+            aria-label={`Theme: ${label}. Switch to ${nextLabel}`}
+            title={`Theme: ${label} — click for ${nextLabel}`}
         >
             <Icon size={15} />
             <span className="hidden font-mono text-[10px] uppercase tracking-[0.14em] sm:inline">{label}</span>
