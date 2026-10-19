@@ -2,8 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" href="/senin-hero.jpg" />
+    <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#faf9f5" />
 
@@ -31,7 +35,16 @@
     <meta name="twitter:description" content="Computer vision pipelines, bilingual AI assistants and full-stack products — the work of Senin Ashraf, AI & Data Science engineer." />
     <meta name="twitter:image" content="https://senin.in/senin-hero.jpg" />
 
-    <!-- Structured data -->
+    <!-- Structured data: site name shown by Google, and the person behind it -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Senin Ashraf",
+        "alternateName": ["Senin Ashraf | AI & Data Science Engineer", "senin.in"],
+        "url": "https://senin.in/"
+      }
+    </script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
