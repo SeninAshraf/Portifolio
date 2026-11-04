@@ -29,22 +29,30 @@ const timeline: TimelineItem[] = [
         kind: 'Learning',
         current: true,
         title: 'Agentic AI',
-        org: 'DeepLearning.AI · Coursera',
-        link: 'https://coursera.org/learn/dlai-agentic-ai',
-        summary: 'Building autonomous, multi-step AI agents with reflection, tool use, planning and multi-agent workflows.',
+        org: 'DeepLearning.AI',
+        summary:
+            'Building autonomous, multi-step AI agents with reflection, tool use, planning and multi-agent workflows. Now working in Power Automate to develop various workflow triggers, and assisting industry experts.',
+    },
+    {
+        id: 'metadesign-engineer',
+        when: ['Nov', '2026'],
+        kind: 'Permanent',
+        current: true,
+        title: 'Software Engineer',
+        org: 'Metadesign Software Solutions Pvt Ltd · Pune, India',
+        summary: 'Working on ERP-based products as a permanent Software Engineer, continuing at Metadesign after my internship.',
     },
     {
         id: 'metadesign-intern',
         when: ['Jun', '2026'],
         kind: 'Internship',
-        current: true,
         title: 'Software Engineer Intern',
         org: 'Metadesign Software Solutions Pvt Ltd · Pune, India',
         summary:
             'End-to-end software engineering on production-grade systems, applying modular design patterns and structured architecture from schema to API.',
         project: {
             title: 'Movie Booking System',
-            description: 'Currently building a movie booking system on a structured, layered architecture:',
+            description: 'Built a movie booking system on a structured, layered architecture:',
             points: [
                 'Layered design separating presentation, business-domain logic and data persistence',
                 'Transactional seat reservation that prevents race conditions and double-booking',
@@ -120,7 +128,7 @@ export const Experience = () => {
                                 {item.project && (
                                     <div className="paper mt-5 p-5">
                                         <p className="label mb-2">
-                                            Active project <span className="text-faint">/</span> <span className="text-ink">{item.project.title}</span>
+                                            Project <span className="text-faint">/</span> <span className="text-ink">{item.project.title}</span>
                                         </p>
                                         <p className="text-[15px] text-muted">{item.project.description}</p>
                                         <ul className="mt-3 space-y-1.5 text-[15px]">

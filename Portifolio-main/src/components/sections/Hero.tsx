@@ -148,8 +148,8 @@ export const Hero = () => {
                         algorithms into production-grade applications.
                     </p>
                     <p>
-                        Right now I'm a Software Engineer Intern at <a href="#experience" className="link">Metadesign Software Solutions</a>, building a movie
-                        booking system, and learning{' '}
+                        Right now I'm a Software Engineer at <a href="#experience" className="link">Metadesign Software Solutions</a>, working on ERP-based
+                        products, and learning{' '}
                         <a href="https://coursera.org/learn/dlai-agentic-ai" target="_blank" rel="noopener noreferrer" className="link">
                             Agentic AI
                         </a>{' '}
@@ -220,10 +220,10 @@ export const Hero = () => {
                         </span>
                     </div>
                 </Sticker>
-                <Sticker board={board} label="Software Engineer Intern at Metadesign" rotate={-6} delay={1.2} className="sm:right-[6%] sm:top-[52%]">
+                <Sticker board={board} label="Software Engineer at Metadesign" rotate={-6} delay={1.2} className="sm:right-[6%] sm:top-[52%]">
                     <div className="w-44 rounded-[4px] bg-[#f4e9a8] px-4 py-3 text-[#2b2611] shadow-lift">
-                        <div className="font-mono text-[10px] uppercase tracking-[0.18em] opacity-70">Since Jun 2026</div>
-                        <div className="font-serif text-2xl leading-tight">SWE Intern</div>
+                        <div className="font-mono text-[10px] uppercase tracking-[0.18em] opacity-70">Since Nov 2026</div>
+                        <div className="font-serif text-2xl leading-tight">Software Engineer</div>
                         <div className="text-xs opacity-80">Metadesign Software Solutions</div>
                     </div>
                 </Sticker>
