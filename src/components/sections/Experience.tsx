@@ -44,7 +44,7 @@ const timeline: TimelineItem[] = [
     },
     {
         id: 'metadesign-intern',
-        when: ['Jun', '2026'],
+        when: ['Jun 26', 'Oct 26'],
         kind: 'Internship',
         title: 'Software Engineer Intern',
         org: 'Metadesign Software Solutions Pvt Ltd · Pune, India',
