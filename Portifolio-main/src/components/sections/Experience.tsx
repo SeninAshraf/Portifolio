@@ -40,7 +40,7 @@ const timeline: TimelineItem[] = [
         current: true,
         title: 'Software Engineer',
         org: 'Metadesign Software Solutions Pvt Ltd · Pune, India',
-        summary: 'Working on ERP-based products as a permanent Software Engineer, continuing at Metadesign after my internship.',
+        summary: 'Building an Android-based application that handles restaurant payment services, as a permanent Software Engineer continuing at Metadesign after my internship.',
     },
     {
         id: 'metadesign-intern',

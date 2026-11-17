@@ -148,8 +148,8 @@ export const Hero = () => {
                         algorithms into production-grade applications.
                     </p>
                     <p>
-                        Right now I'm a Software Engineer at <a href="#experience" className="link">Metadesign Software Solutions</a>, working on ERP-based
-                        products, and learning{' '}
+                        Right now I'm a Software Engineer at <a href="#experience" className="link">Metadesign Software Solutions</a>, building an Android
+                        app for restaurant payments, and learning{' '}
                         <a href="https://coursera.org/learn/dlai-agentic-ai" target="_blank" rel="noopener noreferrer" className="link">
                             Agentic AI
                         </a>{' '}
