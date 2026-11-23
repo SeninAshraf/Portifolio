@@ -31,7 +31,7 @@ const timeline: TimelineItem[] = [
         title: 'Agentic AI',
         org: 'DeepLearning.AI',
         summary:
-            'Building autonomous, multi-step AI agents with reflection, tool use, planning and multi-agent workflows. Now working in Power Automate to develop various workflow triggers, and assisting industry experts.',
+            'Building autonomous, multi-step AI agents with reflection, tool use, planning and multi-agent workflows.',
     },
     {
         id: 'metadesign-engineer',
