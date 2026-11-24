@@ -1,10 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useLenis } from 'lenis/react';
-import { Download, X } from 'lucide-react';
-import { RESUME_OPEN_EVENT } from '../../lib/resume';
-
-const PDF = '/resume.pdf';
+import { Download, Mail, X } from 'lucide-react';
+import { RESUME_OPEN_EVENT, RESUME_PDF } from '../../lib/resume';
 
 /** Résumé preview sheet: one-page image preview with Open PDF / Download actions. */
 export const ResumeSheet = () => {
@@ -67,26 +65,28 @@ export const ResumeSheet = () => {
                         <h2 id="resume-title" className="font-serif text-4xl leading-none">
                             Résumé
                         </h2>
+                        {RESUME_PDF ? (
+                            <>
                         <p className="mt-3 text-[16px] leading-relaxed text-muted">
                             One page. Preview it here, or download the PDF.<span className="sm:hidden"> Pinch to zoom in.</span>
                         </p>
 
                         <div className="mt-6 flex flex-wrap items-center gap-5">
                             <a
-                                href={PDF}
+                                href={RESUME_PDF}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="text-[16px] text-ink underline decoration-line decoration-1 underline-offset-[6px] hover:decoration-accent"
                             >
                                 Open PDF
                             </a>
-                            <a href={PDF} download="SENIN_ASHRAF_RESUME.pdf" className="btn-ink !px-6 !py-2.5 text-[15px]">
+                            <a href={RESUME_PDF} download="SENIN_ASHRAF_RESUME.pdf" className="btn-ink !px-6 !py-2.5 text-[15px]">
                                 <Download size={15} /> Download
                             </a>
                         </div>
 
                         <a
-                            href={PDF}
+                            href={RESUME_PDF}
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label="Open the résumé PDF"
@@ -100,6 +100,20 @@ export const ResumeSheet = () => {
                                 className="w-full rounded-sm transition-transform duration-500 group-hover:scale-[1.01]"
                             />
                         </a>
+                            </>
+                        ) : (
+                            <>
+                                <p className="mt-3 text-[16px] leading-relaxed text-muted">
+                                    I'm updating my résumé right now, and the new version will be up here soon. Until then, email me and I'll send you
+                                    the latest copy.
+                                </p>
+                                <div className="mt-6">
+                                    <a href="mailto:seninashraf765@gmail.com?subject=R%C3%A9sum%C3%A9%20request" className="btn-ink !px-6 !py-2.5 text-[15px]">
+                                        <Mail size={15} /> Ask for my résumé
+                                    </a>
+                                </div>
+                            </>
+                        )}
                     </motion.div>
 
                     <div className="pointer-events-none fixed inset-x-0 bottom-[max(1.5rem,env(safe-area-inset-bottom))] z-[71] flex justify-center sm:inset-x-auto sm:bottom-auto sm:right-6 sm:top-6">

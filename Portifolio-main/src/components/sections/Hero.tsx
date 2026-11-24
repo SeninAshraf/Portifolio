@@ -2,7 +2,7 @@ import { useRef, type ReactNode } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDown, Brain, Code2, Eye, FileText, Github, Trophy } from 'lucide-react';
 import { Barcode } from '../ui/Barcode';
-import { openResume } from '../../lib/resume';
+import { openResume, RESUME_HREF } from '../../lib/resume';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -172,7 +172,7 @@ export const Hero = () => {
                     <a href="#work" className="btn-ink">
                         See my work <ArrowDown size={15} />
                     </a>
-                    <a href="/resume.pdf" onClick={openResume} aria-haspopup="dialog" className="btn-ghost">
+                    <a href={RESUME_HREF} onClick={openResume} aria-haspopup="dialog" className="btn-ghost">
                         <FileText size={15} /> Résumé
                     </a>
                     <a href="https://github.com/SeninAshraf" target="_blank" rel="noopener noreferrer" className="btn-ghost">
